@@ -1,0 +1,68 @@
+title: 关于本站
+
+contentinfo:
+  sup: 你好，很高兴认识你
+  name: 参数外
+  title: 前端开发者 / AI 应用爱好者
+  tip: 前端、AI、效率工具
+  slogan: 在默认参数之外，寻找更好的答案。
+  mask:
+    - 前端开发
+    - AI 应用
+    - 效率工具
+    - 持续成长
+
+skills:
+  title: 技能
+  subtitle: 解锁创造力
+  tags:
+    - title: React
+      icon: fab fa-react
+      color: "#61dafb"
+    - title: AI
+      icon: fas fa-robot
+      color: "#57b6e6"
+    - title: 前端工程化
+      icon: fas fa-layer-group
+      color: "#f7cb4f"
+
+careers:
+  title: 生涯
+  subtitle: 无限进步
+  image: /img/logo.png
+  items:
+    - color: "#357ef5"
+      school: 前端开发者
+      major: 持续关注 AI 应用、工具链与效率优化
+
+motto:
+  title: 座右铭
+  prefix: 在默认参数之外，
+  content: 寻找更好的答案。
+
+expertise:
+  title: 专长
+  prefix: 前端开发, AI 应用, 效率工具
+  specialist: 实践者
+  content: 把复杂问题拆解成可落地的方案
+  level: 进化中
+
+cause:
+  tip: 初衷
+  title: 为什么建立这个网站？
+  content:
+    <br>这里用来记录技术、AI、工具和日常折腾。
+    <br>我会持续分享前端开发、AI 应用以及一切能提升效率的工具与方法。
+    <br>
+
+award:
+  enable: false
+  description: 如需开启赞赏，请替换为你的说明文案。
+  tips: "总金额: ¥ {sum}"
+rewardList:
+
+game:
+  - title: 关注方向
+    img: /img/default.avif
+    subtitle: 前端、AI、效率工具
+    box_shadow: "0 -69px 203px 11px rgba(0,0,0,.35) inset"
