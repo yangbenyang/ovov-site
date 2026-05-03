@@ -1,58 +1,58 @@
 title: 关于本站
 
 contentinfo:
-  sup: 你好，很高兴认识你
-  name: 参数外
-  title: 前端开发者 / AI 应用爱好者
-  tip: 前端、AI、效率工具
-  slogan: 在默认参数之外，寻找更好的答案。
+  sup: OpenClaw 教程站
+  name: OpenClaw 教程
+  title: 安装、配置、接入与实战路线
+  tip: OpenClaw、AI 助手、自动化工作流
+  slogan: 先跑通，再深入，把 OpenClaw 用到真实工作流里。
   mask:
-    - 前端开发
-    - AI 应用
-    - 效率工具
-    - 持续成长
+    - 安装部署
+    - 模型配置
+    - 频道接入
+    - 技能开发
 
 skills:
-  title: 技能
-  subtitle: 解锁创造力
+  title: 教程方向
+  subtitle: 从入门到实战
   tags:
-    - title: React
-      icon: fab fa-react
-      color: "#61dafb"
-    - title: AI
+    - title: 模型配置
       icon: fas fa-robot
       color: "#57b6e6"
-    - title: 前端工程化
-      icon: fas fa-layer-group
+    - title: 频道接入
+      icon: fas fa-comments
+      color: "#27ae60"
+    - title: 技能开发
+      icon: fas fa-code
       color: "#f7cb4f"
 
 careers:
-  title: 生涯
-  subtitle: 无限进步
+  title: 路线
+  subtitle: 学习顺序
   image: /img/logo.png
   items:
     - color: "#357ef5"
-      school: 前端开发者
-      major: 持续关注 AI 应用、工具链与效率优化
+      school: OpenClaw 入门路线
+      major: 先完成安装部署，再配置模型、接入频道、开发技能并做好安全运维
 
 motto:
-  title: 座右铭
-  prefix: 在默认参数之外，
-  content: 寻找更好的答案。
+  title: 目标
+  prefix: 让教程
+  content: 可执行、可复现、可扩展。
 
 expertise:
-  title: 专长
-  prefix: 前端开发, AI 应用, 效率工具
-  specialist: 实践者
-  content: 把复杂问题拆解成可落地的方案
-  level: 进化中
+  title: 覆盖内容
+  prefix: OpenClaw 安装部署, 模型配置, 频道接入, 技能开发
+  specialist: 教程站
+  content: 把 OpenClaw 的关键配置拆成清晰步骤
+  level: 持续更新
 
 cause:
   tip: 初衷
   title: 为什么建立这个网站？
   content:
-    <br>这里用来记录技术、AI、工具和日常折腾。
-    <br>我会持续分享前端开发、AI 应用以及一切能提升效率的工具与方法。
+    <br>这里用于系统整理 OpenClaw 的使用教程。
+    <br>内容会围绕安装部署、模型配置、消息频道、技能开发和安全运维持续补充。
     <br>
 
 award:
@@ -64,5 +64,9 @@ rewardList:
 game:
   - title: 关注方向
     img: /img/default.avif
-    subtitle: 前端、AI、效率工具
+    subtitle: OpenClaw 教程
     box_shadow: "0 -69px 203px 11px rgba(0,0,0,.35) inset"
+  - content: OpenClaw 教程站上线，开始整理入门到实战内容。
+    date: 2026-04-18 21:30
+  - content: 持续补充安装部署、模型配置、频道接入和技能开发教程。
+    date: 2026-04-18 21:31

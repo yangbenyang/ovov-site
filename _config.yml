@@ -1,9 +1,9 @@
 # Site
-title: 参数外
+title: OpenClaw 教程
 subtitle:
-description: 记录技术、AI、工具和日常折腾。
-keywords: 前端开发, AI, 技术博客, 编程, React, 工具, 效率, 个人成长
-author: 参数外
+description: 系统整理 OpenClaw 的安装部署、模型配置、频道接入、技能开发与安全运维教程。
+keywords: OpenClaw, OpenClaw教程, AI助手, 模型配置, Telegram, Slack, Discord, 自动化工作流
+author: OpenClaw 教程
 language: zh-CN
 timezone: "Asia/Shanghai"
 

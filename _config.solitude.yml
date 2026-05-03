@@ -6,7 +6,7 @@
 site:
   name:
     class: text # text / i_class / img
-    custom: 参数外 # Solitude / fas fa-ghost / /img/pwa/favicon.ico
+    custom: OpenClaw 教程 # Solitude / fas fa-ghost / /img/pwa/favicon.ico
   icon: /img/logo.png # Site icon / 网站图标
 # --------------------------- end ---------------------------
 
@@ -17,28 +17,30 @@ nav:
   # Left Box
   # 左侧盒子
   group:
-    项目:
-      参数外: https://ovov.fun || /img/logo.png # name: url || icon
+    官方:
+      OpenClaw: https://github.com/openclaw/openclaw || /img/logo.png # name: url || icon
 
   # Menu
   # 菜单
   menu:
-    # 首页: / # name: link
-    文库: # name
-      全部文章: /archives/ || fas fa-folder-closed # item name: link || icon
+    首页: /
+    教程:
+      全部教程: /archives/ || fas fa-folder-open
+      入门教程: /categories/入门教程/ || fas fa-route
+      安装部署: /categories/安装部署/ || fas fa-download
+      模型配置: /categories/模型配置/ || fas fa-sliders
+      技能开发: /categories/技能开发/ || fas fa-code
+    资源:
       全部分类: /categories/ || fas fa-clone
       全部标签: /tags/ || fas fa-tags
-    友链:
-      友情链接: /links/ || fas fa-link
-      GitHub: https://github.com/yangbenyang || fab fa-github
-    我的:
-      我的装备: /kit/ || fas fa-cogs
-      关于本站: /about/ || fas fa-user
+      OpenClaw GitHub: https://github.com/openclaw/openclaw || fab fa-github
+    关于:
+      关于本站: /about/ || fas fa-circle-info
 
   # Right button
   # 右侧按钮
   right:
-    random: true # Random article / 随机文章按钮
+    random: false # Random article / 随机文章按钮
     custom:
 # --------------------------- end ---------------------------
 
@@ -46,7 +48,7 @@ nav:
 # Home Top Banner
 # 首页顶部
 hometop:
-  enable: true
+  enable: false
   banner:
     title: 记录技术<br >AI 与日常折腾
     desc: 前端开发、AI 应用、效率工具
@@ -69,7 +71,7 @@ hometop:
   group:
     # 热门: /tags/Hexo/ || fas fa-fire || linear-gradient(to right,#f65,#ffbf37)
   recommendList:
-    enable: true
+    enable: false
     sup: 置顶
     title: 记录技术、AI、工具和日常折腾
     url: https://ovov.fun
@@ -105,9 +107,9 @@ aside:
     author:
       img: https://avatars.githubusercontent.com/yangbenyang
       sticker: /img/logo.png # url, 24x24 size
-    description: 关注前端、AI 应用和一切能提升效率的工具。
+    description: 系统整理 OpenClaw 的安装、配置、接入和实战教程。
     # 内容 / Content
-    content: 聚焦前端开发、AI 应用与效率工具，持续记录实践、思考和日常折腾。
+    content: 这里按学习路径整理 OpenClaw 教程，帮助你从本地跑通到接入模型、频道、技能和安全运维。
     state:
       morning: ✨ 早上好，新的一天开始了
       noon: 🍲 午餐时间
@@ -115,14 +117,14 @@ aside:
       night: 早点休息
       goodnight: 晚安 😴
     witty_words:
-      - 在默认参数之外，寻找更好的答案。
-      - 记录问题，也记录解决问题的过程。
-      - 持续折腾，持续优化。
+      - 先跑通，再深入。
+      - 每篇教程都尽量给出可执行步骤。
+      - 把 OpenClaw 用在真实工作流里。
     # social
     # 社交信息图标
     information:
-      Github: https://github.com/yangbenyang || fab fa-github # Name: link || icon
-      Email: mailto:1462169651@qq.com || far fa-envelope
+      GitHub: https://github.com/openclaw/openclaw || fab fa-github # Name: link || icon
+      Docs: https://openclawdoc.com/docs/intro/ || fas fa-book
       Blog: https://ovov.fun || fas fa-globe
   # --------------------------- end ---------------------------
 
@@ -221,7 +223,7 @@ post:
       # 许可证链接
       licenurl: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans
   ai:
-    enable: true
+    enable: false
     modelName: 小七 GPT
   # Article meta information
   # 文章元信息
@@ -280,7 +282,7 @@ post:
   # Article reading progress
   # 文章封面取色
   covercolor:
-    enable: true
+    enable: false
     # local: local color / api: api color / ave: oss average color
     mode: local
     # api address / api 地址
@@ -426,12 +428,12 @@ mermaid: false
 
 # --------------------------- start ---------------------------
 # Chart.js
-chart: true
+chart: false
 # --------------------------- end ---------------------------
 
 # --------------------------- start ---------------------------
 # typeit
-typeit: true
+typeit: false
 # --------------------------- end ---------------------------
 
 ### Extended configuration
@@ -459,7 +461,7 @@ console:
 
 # --------------------------- start ---------------------------
 translate:
-  enable: true
+  enable: false
   defaultEncoding: 2 # 1: 默认繁体 2: 默认简体
   translateDelay: 0 # 首次加载翻译迟疑时间
 # --------------------------- end ---------------------------
@@ -485,21 +487,22 @@ footer:
   information:
     author: /img/logo.png
     left:
-      Github: https://github.com/yangbenyang || fab fa-github # 名称: 链接 || 图标
-      Mail: mailto:1462169651@qq.com || far fa-envelope
+      GitHub: https://github.com/openclaw/openclaw || fab fa-github # 名称: 链接 || 图标
+      Docs: https://openclawdoc.com/docs/intro/ || fas fa-book
     right:
       Blog: https://ovov.fun || fas fa-globe
-  # 友情链接
+  # 页脚分组
   group:
     导航:
-      全部文章: /archives/
+      全部教程: /archives/
       全部分类: /categories/
       全部标签: /tags/
+    教程:
+      入门教程: /categories/入门教程/
+      安装部署: /categories/安装部署/
+      技能开发: /categories/技能开发/
     协议:
       Apache-2.0: https://www.apache.org/licenses/LICENSE-2.0.html
-    友链:
-      Blog: https://ovov.fun/
-      GitHub: https://github.com/yangbenyang
 
   # 随机友链
   randomlink: false # 随机友链
@@ -608,7 +611,7 @@ loading:
   favicon: /img/favicon.png
   # Pace loading
   # Pace 加载
-  pace: true
+  pace: false
 # --------------------------- end ---------------------------
 
 # --------------------------- start ---------------------------
@@ -681,13 +684,13 @@ wordcount: true
 # Latex formula support
 # Latex 公式支持
 katex:
-  enable: true
+  enable: false
   # Whether to load on each page
   # 是否在每个页面加载
   per_page: true
   # Whether to enable copy formula
   # 是否启用复制公式
-  copytex: true
+  copytex: false
 # --------------------------- end ---------------------------
 
 # --------------------------- start ---------------------------
@@ -715,6 +718,7 @@ extends:
   # Insert in head
   # 插入到 head
   head:
+    - <script>localStorage.removeItem("aside-status");document.documentElement.classList.remove("hide-aside");</script>
     - <link rel="stylesheet" href="/css/schedule.css">
   #  - <script src="https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/pace.min.js"></script>
 
@@ -953,7 +957,7 @@ CDN:
     # mermaid_js
     # meting_js
     # pace_js
-    # pjax
+    pjax: /js/pjax-disabled.js
     # qrcode
     # snackbar
     # swiper_css
