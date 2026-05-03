@@ -589,8 +589,8 @@ keyboard:
 # --------------------------- start ---------------------------
 # Lazyload
 # 图片懒加载
-lazyload:
-  enable: true
+  lazyload:
+    enable: true
   # post, site
   field: site
   # 加载时替换图
