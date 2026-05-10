@@ -2,7 +2,7 @@
 title: OpenClaw 办公文档教程：用 open-design-office 生成 OKR 看板
 date: 2026-05-10 23:30:00
 updated: 2026-05-10 23:30:00
-categories: OpenClaw教程
+categories: 网页设计
 tags:
   - OpenClaw
   - 办公文档
