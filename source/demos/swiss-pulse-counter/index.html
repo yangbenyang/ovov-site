@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>HyperFrames — Swiss Pulse Example</title>
+    <!-- 引入 GSAP 动画库 -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --bg: #0a0a0a;
+        --fg: #ffffff;
+        --accent: #0066ff; /* Electric Blue */
+        --font-main: 'Inter', -apple-system, system-ui, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--fg);
+        overflow: hidden;
+        font-family: var(--font-main);
+      }
+
+      /* 容器：1080x1080 社交媒体比例 */
+      .composition {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 80px;
+        position: relative;
+      }
+
+      /* 装饰性网格线 */
+      .grid {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 100px 100px;
+      }
+
+      .badge {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        padding: 6px 12px;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        margin-bottom: 20px;
+        opacity: 1;
+      }
+
+      .title {
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin: 0;
+        text-transform: uppercase;
+      }
+
+      .stat {
+        font-size: 240px;
+        font-weight: 900;
+        letter-spacing: -0.05em;
+        line-height: 0.8;
+        color: var(--fg);
+        margin: 40px 0;
+      }
+
+      .footer {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- data-composition-id 标识这是一个 HyperFrames 场景 -->
+    <div class="composition" data-composition-id="swiss-pulse" data-duration="5">
+      <div class="grid"></div>
+
+      <!-- 每个元素都有自己的 ID，方便 GSAP 抓取 -->
+      <div id="badge" class="badge">Live Status</div>
+      <h1 id="title" class="title">System Uptime</h1>
+      <div id="stat" class="stat">00.0%</div>
+      <div id="footer" class="footer">Measurement: 24h Period · Region: US-EAST</div>
+    </div>
+
+    <script>
+      // 1. 初始化 GSAP 时间轴，设为 paused: true 由 HyperFrames 引擎控制
+      const tl = gsap.timeline({ paused: true })
+
+      // 2. 编排动画流程
+      // 0.2秒：徽章滑入
+      tl.from('#badge', { y: 20, opacity: 0, duration: 0.6, ease: 'expo.out' }, 0.2)
+
+      // 0.4秒：标题滑入
+      tl.from('#title', { y: 30, opacity: 0, duration: 0.6, ease: 'expo.out' }, 0.4)
+
+      // 0.6秒：巨大的数字缩放并淡入
+      tl.from('#stat', { scale: 0.8, opacity: 0, duration: 0.8, ease: 'expo.out' }, 0.6)
+
+      // 0.6秒 - 2.0秒：数字增长动画
+      const countData = { value: 0 }
+      tl.to(
+        countData,
+        {
+          value: 99.9,
+          duration: 1.5,
+          ease: 'power2.out',
+          onUpdate: () => {
+            document.getElementById('stat').textContent = countData.value.toFixed(1) + '%'
+          }
+        },
+        0.6
+      )
+
+      // 1.0秒：底部文字出现
+      tl.from('#footer', { opacity: 0, duration: 1 }, 1.0)
+
+      // 3. 将时间轴注册到全局，供 HyperFrames 引擎调用
+      window.__timelines = window.__timelines || {}
+      window.__timelines['swiss-pulse'] = tl
+
+      // 开发者模式：点击屏幕可以预览动画
+      window.onclick = () => tl.restart()
+
+      // 自动播放预览
+      setTimeout(() => tl.restart(), 500)
+    </script>
+  </body>
+</html>

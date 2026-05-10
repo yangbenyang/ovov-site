@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>夏日 City Walk 指南 — 小红书轮播图</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #fdfaf5;
+      --text: #2c2c2c;
+      --accent: #ff4d4d; /* 小红书红 */
+      --serif: 'Noto Serif SC', serif;
+      --sans: 'Noto Sans SC', sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #eeeeee; font-family: var(--sans); }
+    .stage { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    .row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+    
+    .card {
+      width: 360px; aspect-ratio: 3/4; background: var(--bg); border-radius: 16px;
+      position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      color: var(--text);
+    }
+    
+    /* 装饰性元素 */
+    .card::after {
+      content: 'CITY WALK'; position: absolute; top: -20px; right: -20px;
+      font: 900 60px var(--sans); color: rgba(0,0,0,0.03); transform: rotate(-15deg);
+    }
+
+    .content { position: absolute; inset: 24px; display: flex; flex-direction: column; justify-content: space-between; z-index: 2; }
+    
+    .tag { align-self: flex-start; background: var(--accent); color: #fff; padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: 700; }
+    
+    .main-title { margin-top: 20px; }
+    .main-title h2 { font: 900 42px/1.1 var(--serif); margin: 0; letter-spacing: -1px; }
+    .main-title p { font-size: 16px; color: #666; margin: 12px 0 0; }
+    
+    .footer { border-top: 1px solid #ddd; padding-top: 16px; display: flex; justify-content: space-between; align-items: center; }
+    .author { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; }
+    .author .avatar { width: 24px; height: 24px; background: #ddd; border-radius: 50%; }
+    .page-num { font-size: 12px; color: #999; font-weight: 700; }
+
+    /* 不同卡片的渐变背景 */
+    .card.c1 { background: linear-gradient(135deg, #fffcf5 0%, #fff0f0 100%); }
+    .card.c2 { background: linear-gradient(135deg, #f5faff 0%, #f0f5ff 100%); }
+    .card.c3 { background: linear-gradient(135deg, #f5fff5 0%, #f0fff0 100%); }
+
+    @media (max-width: 800px) { .card { width: 100%; } }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="row">
+      <!-- 第一张：封面 -->
+      <article class="card c1">
+        <div class="content">
+          <div class="tag">上海 · 这里的夏天</div>
+          <div class="main-title">
+            <h2>躲进<br/>老洋房的<br/>夏天。</h2>
+            <p>3条避暑路线推荐，感受魔都最文艺的午后。</p>
+          </div>
+          <div class="footer">
+            <div class="author"><div class="avatar"></div>阿强游上海</div>
+            <div class="page-num">01 / 03</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 第二张：路线 -->
+      <article class="card c2">
+        <div class="content">
+          <div class="tag">路线 A · 梧桐区</div>
+          <div class="main-title">
+            <h2>武康路<br/>到安福路。</h2>
+            <p>不仅是拍照，还有那些藏在巷子里的宝藏书店。</p>
+          </div>
+          <div class="footer">
+            <div class="author"><div class="avatar"></div>阿强游上海</div>
+            <div class="page-num">02 / 03</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 第三张：结尾 -->
+      <article class="card c3">
+        <div class="content">
+          <div class="tag">实用贴 · 必看</div>
+          <div class="main-title">
+            <h2>带上相机<br/>现在就<br/>出发。</h2>
+            <p>记得避开正午，下午四点的光线最温柔。</p>
+          </div>
+          <div class="footer">
+            <div class="author"><div class="avatar"></div>阿强游上海</div>
+            <div class="page-num">03 / 03</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</body>
+</html>
