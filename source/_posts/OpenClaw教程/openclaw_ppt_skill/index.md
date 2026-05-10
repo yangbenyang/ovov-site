@@ -10,8 +10,9 @@ tags:
   - open-design-artifacts
   - 技能安装
 abbrlink: openclaw-ppt-skill-tutorial
-cover: ./assets/01-install-skill.png
+cover: ./assets/cover.png
 ---
+
 # OpenClaw 使用 open-design-artifacts 技能生成 PPT 图文教程
 
 ## 演示预览
@@ -22,7 +23,7 @@ cover: ./assets/01-install-skill.png
     <strong>LUMIÈRE 投资人 Pitch Deck</strong>
     <em>沙发品牌高级路演 PPT</em>
   </a>
-</div>
+</div> 
 
 ## 教程目标
 
