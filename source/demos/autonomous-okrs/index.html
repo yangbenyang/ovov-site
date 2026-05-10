@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>自动驾驶算法团队 · Q3 2026 OKRs</title>
+<style>
+  :root {
+    --bg: #f5f6f9;
+    --paper: #ffffff;
+    --ink: #161924;
+    --muted: #5d6678;
+    --line: #e3e6ee;
+    --accent: #2c4ee8;
+    --accent-soft: #eaeefe;
+    --positive: #1f8a5a;
+    --warn: #b58522;
+    --danger: #b13b3b;
+    --display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 14px; line-height: 1.55; }
+  .app { display: grid; grid-template-columns: 1fr 320px; min-height: 100vh; }
+  main { padding: 28px 32px 56px; min-width: 0; }
+  aside.side { padding: 28px 28px 56px; background: var(--paper); border-left: 1px solid var(--line); }
+
+  .crumb { font-family: var(--mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .quarter-banner { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px; padding: 28px 32px; background: linear-gradient(135deg, #0a1628, #1a365d); color: white; border-radius: 16px; margin: 6px 0 28px; }
+  .quarter-banner h1 { margin: 6px 0 4px; font-size: 32px; font-weight: 700; letter-spacing: -0.02em; }
+  .quarter-banner .meta { color: rgba(255,255,255,0.72); font-size: 13.5px; }
+  .qb-progress { text-align: right; }
+  .qb-progress .num { font-size: 56px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: #93c5fd; }
+  .qb-progress .label { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.6); margin-top: 4px; }
+
+  /* Objective cards */
+  .objectives { display: flex; flex-direction: column; gap: 16px; }
+  .obj { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .obj-head { padding: 22px 26px; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto auto; gap: 18px; align-items: center; }
+  .obj-title { display: flex; flex-direction: column; gap: 4px; }
+  .obj-num { font-family: var(--mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .obj-name { font-size: 19px; font-weight: 600; letter-spacing: -0.005em; line-height: 1.35; max-width: 60ch; }
+  .obj-owner { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); }
+  .av { width: 30px; height: 30px; border-radius: 50%; color: white; font-size: 11.5px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+  .av-lw { background: linear-gradient(135deg, #1e40af, #3b82f6); }
+  .av-zh { background: linear-gradient(135deg, #065f46, #10b981); }
+  .av-wy { background: linear-gradient(135deg, #7c2d12, #f97316); }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; font-family: var(--mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+  .pill .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .pill.on-track { background: rgba(31,138,90,0.12); color: var(--positive); }
+  .pill.at-risk { background: rgba(181,133,34,0.12); color: var(--warn); }
+  .pill.off-track { background: rgba(177,59,59,0.12); color: var(--danger); }
+
+  .krs { padding: 8px 0; }
+  .kr { display: grid; grid-template-columns: 1fr 180px 80px 70px; gap: 12px; padding: 16px 26px; border-top: 1px solid var(--line); align-items: center; }
+  .kr:first-child { border-top: none; }
+  .kr-name { font-size: 14px; }
+  .kr-name strong { display: block; font-weight: 500; }
+  .kr-name small { color: var(--muted); display: block; margin-top: 2px; font-family: var(--mono); font-size: 11px; }
+  .kr-bar { height: 8px; background: var(--bg); border-radius: 999px; overflow: hidden; position: relative; }
+  .kr-fill { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--accent), #6e85ff); }
+  .kr-fill.warn { background: linear-gradient(90deg, var(--warn), #f1b13a); }
+  .kr-fill.danger { background: linear-gradient(90deg, var(--danger), #d8625e); }
+  .kr-pct { font-family: var(--mono); font-size: 13px; font-weight: 600; text-align: right; }
+  .kr-confidence { font-family: var(--mono); font-size: 12px; text-align: center; padding: 2px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .kr-confidence.high { background: rgba(31,138,90,0.1); color: var(--positive); }
+  .kr-confidence.med { background: rgba(181,133,34,0.1); color: var(--warn); }
+  .kr-confidence.low { background: rgba(177,59,59,0.1); color: var(--danger); }
+
+  /* Sidebar */
+  aside.side h3 { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 22px 0 12px; font-weight: 500; }
+  aside.side h3:first-child { margin-top: 0; }
+  .stat { display: flex; justify-content: space-between; padding: 10px 0; border-top: 1px dashed var(--line); font-size: 13.5px; }
+  .stat:first-of-type { border-top: none; padding-top: 4px; }
+  .stat strong { font-family: var(--mono); }
+  .stat strong.up { color: var(--positive); }
+  .stat strong.down { color: var(--danger); }
+
+  .mover { display: grid; grid-template-columns: 30px 1fr auto; gap: 10px; padding: 10px 0; border-top: 1px dashed var(--line); font-size: 13px; align-items: center; }
+  .mover:first-of-type { border-top: none; padding-top: 0; }
+  .mover .delta { font-family: var(--mono); font-size: 11.5px; color: var(--positive); }
+  .mover .delta.down { color: var(--danger); }
+
+  .blocker { padding: 16px; background: rgba(177,59,59,0.06); border: 1px solid rgba(177,59,59,0.2); border-radius: 10px; margin-top: 10px; }
+  .blocker strong { color: var(--danger); }
+  .blocker p { margin: 6px 0 0; font-size: 12.5px; color: var(--muted); }
+
+  .kr-header { display: grid; grid-template-columns: 1fr 180px 80px 70px; gap: 12px; padding: 12px 26px 4px; font-family: var(--mono); font-size: 10px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.06em; }
+
+  @media (max-width: 1080px) {
+    .app { grid-template-columns: 1fr; }
+    aside.side { border-left: none; border-top: 1px solid var(--line); }
+    .obj-head { grid-template-columns: 1fr; }
+    .kr { grid-template-columns: 1fr; }
+    .kr-pct { text-align: left; }
+    .kr-header { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <main>
+    <div class="crumb">自动驾驶算法团队 / OKRs / 2026 / Q3</div>
+    <div class="quarter-banner">
+      <div>
+        <h1>Q3 2026 · 自动驾驶算法团队</h1>
+        <div class="meta">7月1日 → 9月30日 2026 · 负责人：李伟博士 · 3项目标 · 9项关键结果</div>
+      </div>
+      <div class="qb-progress">
+        <div class="num">38%</div>
+        <div class="label">季度进度 · 41% 时间已过</div>
+      </div>
+    </div>
+
+    <section class="objectives">
+      <article class="obj">
+        <div class="obj-head">
+          <div class="obj-title"><span class="obj-num">目标一</span><span class="obj-name">实现城市复杂道路 L4 级自动驾驶全场景覆盖，打造行业标杆级安全性能。</span></div>
+          <div class="obj-owner"><span class="av av-lw">LW</span>李伟</div>
+          <span class="pill on-track"><span class="dot"></span>正常推进</span>
+        </div>
+        <div class="kr-header">
+          <span>关键结果</span>
+          <span>进度</span>
+          <span>完成率</span>
+          <span>信心</span>
+        </div>
+        <div class="krs">
+          <div class="kr">
+            <div class="kr-name"><strong>城市道路接管率 ≤ 0.1 次/千公里</strong><small>基准：0.32 次/千公里 · 当前：0.15 次/千公里</small></div>
+            <div class="kr-bar"><span class="kr-fill" style="width: 72%"></span></div>
+            <div class="kr-pct">72%</div>
+            <div class="kr-confidence high">95%</div>
+          </div>
+          <div class="kr">
+            <div class="kr-name"><strong>完成 20 个核心城市的高精地图自动化更新</strong><small>目标：20城 · 当前：14城完成</small></div>
+            <div class="kr-bar"><span class="kr-fill" style="width: 70%"></span></div>
+            <div class="kr-pct">70%</div>
+            <div class="kr-confidence high">90%</div>
+          </div>
+          <div class="kr">
+            <div class="kr-name"><strong>极端天气（暴雨/大雾/夜间）通过率 ≥ 98%</strong><small>基准：89% · 当前：94%</small></div>
+            <div class="kr-bar"><span class="kr-fill" style="width: 56%"></span></div>
+            <div class="kr-pct">56%</div>
+            <div class="kr-confidence med">75%</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="obj">
+        <div class="obj-head">
+          <div class="obj-title"><span class="obj-num">目标二</span><span class="obj-name">构建大规模端到端自动驾驶训练框架，算法迭代速度提升 300%。</span></div>
+          <div class="obj-owner"><span class="av av-zh">ZH</span>张华</div>
+          <span class="pill at-risk"><span class="dot"></span>有风险</span>
+        </div>
+        <div class="kr-header">
+          <span>关键结果</span>
+          <span>进度</span>
+          <span>完成率</span>
+          <span>信心</span>
+        </div>
+        <div class="krs">
+          <div class="kr">
+            <div class="kr-name"><strong>日均训练数据处理量 ≥ 10 PB</strong><small>基准：3.2 PB · 当前：6.8 PB</small></div>
+            <div class="kr-bar"><span class="kr-fill warn" style="width: 68%"></span></div>
+            <div class="kr-pct">68%</div>
+            <div class="kr-confidence med">70%</div>
+          </div>
+          <div class="kr">
+            <div class="kr-name"><strong>模型训练周期从 14 天压缩至 ≤ 4 天</strong><small>基准：14天 · 当前：8天</small></div>
+            <div class="kr-bar"><span class="kr-fill warn" style="width: 60%"></span></div>
+            <div class="kr-pct">60%</div>
+            <div class="kr-confidence med">65%</div>
+          </div>
+          <div class="kr">
+            <div class="kr-name"><strong>实车路测数据闭环自动化率 ≥ 95%</strong><small>基准：65% · 当前：78%</small></div>
+            <div class="kr-bar"><span class="kr-fill warn" style="width: 43%"></span></div>
+            <div class="kr-pct">43%</div>
+            <div class="kr-confidence low">55%</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="obj">
+        <div class="obj-head">
+          <div class="obj-title"><span class="obj-num">目标三</span><span class="obj-name">率先量产落地纯视觉 BEV 感知方案，单套传感器成本下降 60%。</span></div>
+          <div class="obj-owner"><span class="av av-wy">WY</span>王宇</div>
+          <span class="pill on-track"><span class="dot"></span>正常推进</span>
+        </div>
+        <div class="kr-header">
+          <span>关键结果</span>
+          <span>进度</span>
+          <span>完成率</span>
+          <span>信心</span>
+        </div>
+        <div class="krs">
+          <div class="kr">
+            <div class="kr-name"><strong>纯视觉方案感知精度对标激光雷达达 ≥ 98%</strong><small>基准：85% · 当前：93%</small></div>
+            <div class="kr-bar"><span class="kr-fill" style="width: 64%"></span></div>
+            <div class="kr-pct">64%</div>
+            <div class="kr-confidence high">88%</div>
+          </div>
+          <div class="kr">
+            <div class="kr-name"><strong>完成 3 款量产车型的硬件集成与验证</strong><small>目标：3款 · 当前：2款完成集成</small></div>
+            <div class="kr-bar"><span class="kr-fill" style="width: 75%"></span></div>
+            <div class="kr-pct">75%</div>
+            <div class="kr-confidence high">92%</div>
+          </div>
+          <div class="kr">
+            <div class="kr-name"><strong>单套传感器成本从 8000 元降至 ≤ 3200 元</strong><small>基准：8000元 · 当前：4200元</small></div>
+            <div class="kr-bar"><span class="kr-fill" style="width: 65%"></span></div>
+            <div class="kr-pct">65%</div>
+            <div class="kr-confidence high">85%</div>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <aside class="side">
+    <h3>本季度概览</h3>
+    <div class="stat"><span>目标正常推进</span><strong class="up">2 / 3</strong></div>
+    <div class="stat"><span>关键结果绿色</span><strong>5 / 9</strong></div>
+    <div class="stat"><span>关键结果黄色</span><strong>3 / 9</strong></div>
+    <div class="stat"><span>关键结果红色</span><strong>1 / 9</strong></div>
+    <div class="stat"><span>剩余天数</span><strong>53 / 92</strong></div>
+    <div class="stat"><span>整体风险等级</span><strong class="down">低</strong></div>
+
+    <h3>本周重大进展</h3>
+    <div class="mover"><span class="av av-lw" style="width:24px;height:24px;font-size:9.5px;">LW</span><span>上海晚高峰接管率突破 0.12</span><span class="delta">+18%</span></div>
+    <div class="mover"><span class="av av-wy" style="width:24px;height:24px;font-size:9.5px;">WY</span><span>BEV 模型 A 轮验证通过</span><span class="delta">+12%</span></div>
+    <div class="mover"><span class="av av-zh" style="width:24px;height:24px;font-size:9.5px;">ZH</span><span>训练集群扩容延迟</span><span class="delta down">−8%</span></div>
+
+    <h3>风险与障碍</h3>
+    <div class="blocker">
+      <strong>数据闭环进度落后。</strong>
+      <p>新标注平台上线延迟 2 周，导致 100 小时关键场景数据积压。需在 7 月 25 日前完成平台上线，否则 KR3 可能无法达成。</p>
+    </div>
+
+    <h3>下周重点里程碑</h3>
+    <div class="blocker" style="background: rgba(28,78,232,0.06); border-color: rgba(28,78,232,0.2);">
+      <strong style="color: var(--accent);">7 月 18 日：北京亦庄全无人路测</strong>
+      <p>首次在公开道路进行完全无人驾驶测试，覆盖亦庄核心区 50 公里道路。</p>
+    </div>
+  </aside>
+</div>
+</body>
+</html>

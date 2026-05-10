@@ -1,0 +1,21 @@
+{
+  "title": "LUMIÈRE Mobile Shopping App Prototype",
+  "type": "mobile",
+  "description": "High-fidelity iPhone 15 Pro mockup for LUMIÈRE luxury sofa brand shopping app. 5 interactive screens with elegant cream, deep brown, and muted gold palette.",
+  "entry": "index.html",
+  "files": ["index.html"],
+  "screens": [
+    "Onboarding - Brand introduction with hero sofa visual",
+    "Home Feed - New arrivals, space inspiration, recommendations",
+    "Product Detail - Sofa image, materials, sizes, pricing, color selection",
+    "Cart & Checkout - Order summary, delivery, payment confirmation",
+    "Profile - Orders, favorites, appointments, membership benefits"
+  ],
+  "designStyle": "Luxury minimalist, cream and deep brown palette, muted gold accents, high-end home magazine aesthetic",
+  "interactionFeatures": [
+    "Bottom tab navigation across 5 screens",
+    "Product color selection with active state",
+    "Cards, buttons, and tags with refined mobile details",
+    "Full iPhone 15 Pro frame with Dynamic Island and Home Indicator"
+  ]
+}
