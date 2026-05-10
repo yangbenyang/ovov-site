@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OpenClaw Skill Marketplace · 技能市场</title>
+  <style>
+    :root {
+      --bg:        #0d0d12;
+      --bg-soft:   #12121a;
+      --surface:   #16161f;
+      --surface-2: #1e1e2a;
+      --fg:        #e8e8f0;
+      --muted:     #8b8ba2;
+      --border:    #2a2a3a;
+      --accent:    #00f5d4;
+      --accent-2:  #7b61ff;
+      --accent-3:  #ff6b9d;
+
+      --accent-soft: color-mix(in oklch, var(--accent) 12%, transparent);
+      --fg-soft:     color-mix(in oklch, var(--fg) 4%, transparent);
+
+      --font-display: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --font-body:    -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --font-mono:    ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+      --fs-h1: clamp(44px, 6vw, 72px);
+      --fs-h2: clamp(32px, 4vw, 48px);
+      --fs-h3: 22px;
+      --fs-lead: 19px;
+      --fs-body: 16px;
+      --fs-meta: 13px;
+
+      --gap-xs: 8px;
+      --gap-sm: 12px;
+      --gap-md: 20px;
+      --gap-lg: 32px;
+      --gap-xl: 56px;
+      --gap-2xl: 96px;
+      --container: 1180px;
+      --gutter: 32px;
+
+      --radius: 10px;
+      --radius-lg: 16px;
+
+      --grad: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: var(--fs-body);
+      line-height: 1.55;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 20% 80%, color-mix(in oklch, var(--accent) 8%, transparent) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, color-mix(in oklch, var(--accent-2) 8%, transparent) 0%, transparent 50%),
+        linear-gradient(rgba(42, 42, 58, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42, 42, 58, 0.1) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      background-position: 0 0, 0 0, 20px 20px, 20px 20px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+    p { text-wrap: pretty; }
+    h1, h2, h3, h4 { text-wrap: balance; font-weight: 600; }
+
+    .container {
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      position: relative;
+      z-index: 1;
+    }
+    .section {
+      padding-block: clamp(48px, 8vw, var(--gap-2xl));
+    }
+    .section + .section { border-top: 1px solid var(--border); }
+    .stack { display: flex; flex-direction: column; }
+    .stack > * + * { margin-top: var(--gap-md); }
+    .row { display: flex; align-items: center; gap: var(--gap-md); }
+    .row-between { display: flex; align-items: center; justify-content: space-between; gap: var(--gap-md); }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gap-lg); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-lg); }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap-md); }
+    @media (max-width: 920px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    .h1, h1 { font-family: var(--font-display); font-size: var(--fs-h1); line-height: 1.04; letter-spacing: -0.02em; margin: 0; font-weight: 700; }
+    .h2, h2 { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.1; letter-spacing: -0.015em; margin: 0; }
+    .h3, h3 { font-size: var(--fs-h3); font-weight: 600; line-height: 1.3; letter-spacing: -0.005em; margin: 0; }
+    .lead   { font-size: var(--fs-lead); line-height: 1.55; color: var(--muted); max-width: 60ch; margin: 0; }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0 0 var(--gap-md);
+      font-weight: 600;
+    }
+    .meta { font-family: var(--font-mono); font-size: var(--fs-meta); color: var(--muted); }
+    .num  { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+    .topnav {
+      position: sticky; top: 0; z-index: 100;
+      background: color-mix(in oklch, var(--bg) 90%, transparent);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topnav-inner { display: flex; align-items: center; justify-content: space-between; padding-block: 14px; }
+    .topnav .logo { 
+      font-family: var(--font-display); 
+      font-size: 20px; 
+      font-weight: 700; 
+      letter-spacing: -0.01em;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .topnav nav { display: flex; gap: var(--gap-lg); }
+    .topnav nav a { font-size: 14px; color: var(--muted); transition: color 0.2s ease; }
+    .topnav nav a:hover { color: var(--fg); }
+    .pagefoot { padding-block: var(--gap-xl); color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 20px;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.005em;
+      transition: transform 0.08s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { 
+      background: var(--grad); 
+      color: var(--bg); 
+      border-color: transparent;
+      font-weight: 600;
+    }
+    .btn-primary:hover { 
+      box-shadow: 0 0 30px color-mix(in oklch, var(--accent) 40%, transparent);
+    }
+    .btn-secondary { background: transparent; color: var(--fg); border-color: var(--border); }
+    .btn-secondary:hover { border-color: var(--fg); background: var(--surface-2); }
+    .btn-ghost { background: transparent; color: var(--fg); border-color: transparent; padding-inline: 8px; }
+    .btn-ghost:hover { color: var(--accent); }
+    .btn-arrow::after { content: '→'; transition: transform 0.15s ease; }
+    .btn-arrow:hover::after { transform: translateX(2px); }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      border-color: color-mix(in oklch, var(--accent) 40%, transparent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 40px color-mix(in oklch, var(--accent-2) 10%, transparent);
+    }
+    .card-flat { background: transparent; border: 0; padding: 0; }
+
+    .feature .feature-mark {
+      width: 44px; height: 44px;
+      display: grid; place-items: center;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--accent);
+      margin-bottom: var(--gap-md);
+    }
+    .feature .feature-mark svg { width: 20px; height: 20px; }
+    .feature h3 { margin-bottom: 8px; }
+    .feature p  { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .stat .stat-num {
+      font-family: var(--font-mono);
+      font-size: clamp(56px, 8vw, 96px);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+    .stat .stat-label { color: var(--muted); font-size: 14px; margin-top: 8px; max-width: 24ch; }
+    .stat .stat-unit  { font-size: 0.4em; opacity: 0.7; margin-left: 2px; }
+
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .pill.purple {
+      background: color-mix(in oklch, var(--accent-2) 16%, transparent);
+      color: var(--accent-2);
+    }
+    .pill.pink {
+      background: color-mix(in oklch, var(--accent-3) 16%, transparent);
+      color: var(--accent-3);
+    }
+    .tag {
+      display: inline-flex; align-items: center;
+      padding: 4px 10px;
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .hero          { padding-block: clamp(100px, 14vw, 180px); }
+    .hero-center   { text-align: center; max-width: 42ch; margin-inline: auto; }
+    .hero h1       { margin-bottom: var(--gap-md); }
+    .hero .lead    { margin-bottom: var(--gap-lg); }
+    .hero-cta      { display: inline-flex; gap: var(--gap-sm); flex-wrap: wrap; }
+    .hero-center .hero-cta { justify-content: center; }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--grad);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .skill-card:hover::before {
+      opacity: 1;
+    }
+    .skill-card:hover {
+      border-color: color-mix(in oklch, var(--accent) 30%, transparent);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 60px color-mix(in oklch, var(--accent-2) 12%, transparent);
+    }
+    .skill-card .skill-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .skill-card .skill-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: grid; place-items: center;
+      font-size: 20px;
+      background: var(--surface-2);
+    }
+    .skill-card .skill-name {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .skill-card .skill-desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .skill-card .skill-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
+
+    .category-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .category-card:hover {
+      border-color: var(--accent);
+      background: var(--surface-2);
+    }
+    .category-card .category-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    .category-card .category-name {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .category-card .category-count {
+      color: var(--muted);
+      font-size: 13px;
+      font-family: var(--font-mono);
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 6px 6px 6px 16px;
+      margin-top: 24px;
+    }
+    .search-bar input {
+      flex: 1;
+      background: transparent;
+      border: 0;
+      color: var(--fg);
+      font: inherit;
+      font-size: 15px;
+      padding: 10px 8px;
+      outline: none;
+    }
+    .search-bar input::placeholder {
+      color: var(--muted);
+    }
+    .search-bar .shortcut {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      padding: 6px 10px;
+      background: var(--surface-2);
+      border-radius: 6px;
+      margin-right: 8px;
+    }
+
+    .badge-new {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <header class="topnav" data-od-id="topnav">
+    <div class="container topnav-inner">
+      <span class="logo">OpenClaw</span>
+      <nav>
+        <a href="#">探索</a>
+        <a href="#">分类</a>
+        <a href="#">我的技能</a>
+        <a href="#">文档</a>
+      </nav>
+      <button class="btn btn-primary">发布技能</button>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="section hero" data-od-id="hero">
+      <div class="container hero-center">
+        <p class="eyebrow">SKILL MARKETPLACE · 2026</p>
+        <h1>用技能<br/>扩展你的 OpenClaw</h1>
+        <p class="lead">从 AI 助手到工作流自动化，一键安装数百个社区贡献的技能，让你的工作流更智能、更高效。</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary">立即开始</button>
+          <button class="btn btn-secondary">浏览全部技能</button>
+        </div>
+        <div class="search-bar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--muted);">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" placeholder="搜索 PPT 生成、数据分析、图片处理、邮件自动化..." />
+          <span class="shortcut">⌘ K</span>
+          <button class="btn btn-primary">搜索</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-od-id="stats">
+      <div class="container">
+        <div class="grid-3">
+          <div class="stat">
+            <div class="stat-num num">247<span class="stat-unit">+</span></div>
+            <p class="stat-label">社区技能数量，每周新增 15+ 个</p>
+          </div>
+          <div class="stat">
+            <div class="stat-num num">38.4K</div>
+            <p class="stat-label">技能累计安装次数</p>
+          </div>
+          <div class="stat">
+            <div class="stat-num num">98.7<span class="stat-unit">%</span></div>
+            <p class="stat-label">技能满意度评分</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-od-id="features">
+      <div class="container stack" style="gap: 56px;">
+        <div style="max-width: 36ch;">
+          <p class="eyebrow">FEATURES · 核心特性</p>
+          <h2>为什么使用技能市场</h2>
+        </div>
+        <div class="grid-3">
+          <div class="feature card-flat">
+            <div class="feature-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3>一键安装</h3>
+            <p>点击即可安装，无需配置环境，无需重启 OpenClaw。技能即装即用，无缝集成。</p>
+          </div>
+          <div class="feature card-flat">
+            <div class="feature-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+            </div>
+            <h3>安全审核</h3>
+            <p>每个技能都经过自动化安全扫描和人工审核。沙盒运行，确保你的数据安全。</p>
+          </div>
+          <div class="feature card-flat">
+            <div class="feature-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 2v4"/>
+                <path d="M12 18v4"/>
+                <path d="M4.93 4.93l2.83 2.83"/>
+                <path d="M16.24 16.24l2.83 2.83"/>
+                <path d="M2 12h4"/>
+                <path d="M18 12h4"/>
+                <path d="M4.93 19.07l2.83-2.83"/>
+                <path d="M16.24 7.76l2.83-2.83"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+            <h3>开源透明</h3>
+            <p>所有技能代码完全开源可查。你可以自由修改、二次开发，甚至提交你的改进。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-od-id="featured">
+      <div class="container stack" style="gap: 56px;">
+        <div class="row-between">
+          <div style="max-width: 36ch;">
+            <p class="eyebrow">FEATURED · 精选推荐</p>
+            <h2>本周热门技能</h2>
+          </div>
+          <a class="btn btn-ghost btn-arrow" href="#">查看全部</a>
+        </div>
+        <div class="grid-3">
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon">🎨</div>
+              <span class="badge-new">NEW</span>
+            </div>
+            <div class="skill-name">Open Design Artifacts</div>
+            <div class="skill-desc">生成专业级 PPT 幻灯片、网页原型、移动端界面和数据仪表盘。</div>
+            <div class="skill-meta">
+              <span>⭐ 4.9</span>
+              <span>2.3K 安装</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon">📊</div>
+              <span class="badge-new">HOT</span>
+            </div>
+            <div class="skill-name">DataViz Pro</div>
+            <div class="skill-desc">一键生成数据可视化图表，支持 20+ 图表类型，自动识别数据结构。</div>
+            <div class="skill-meta">
+              <span>⭐ 4.8</span>
+              <span>5.1K 安装</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon">🤖</div>
+            </div>
+            <div class="skill-name">AI Agent Suite</div>
+            <div class="skill-desc">多智能体协作系统，支持代码审查、文档编写、数据调研等任务。</div>
+            <div class="skill-meta">
+              <span>⭐ 4.7</span>
+              <span>8.7K 安装</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon">🖼️</div>
+            </div>
+            <div class="skill-name">Image Studio</div>
+            <div class="skill-desc">批量图片处理工具，支持压缩、格式转换、水印添加、智能裁剪。</div>
+            <div class="skill-meta">
+              <span>⭐ 4.9</span>
+              <span>6.2K 安装</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon">📧</div>
+              <span class="badge-new">NEW</span>
+            </div>
+            <div class="skill-name">Mail Automator</div>
+            <div class="skill-desc">智能邮件自动化助手，自动分类、摘要、回复、跟进提醒。</div>
+            <div class="skill-meta">
+              <span>⭐ 4.6</span>
+              <span>1.8K 安装</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon">🎙️</div>
+            </div>
+            <div class="skill-name">Transcribe Pro</div>
+            <div class="skill-desc">高质量语音转文字，支持 99+ 种语言，自动识别说话人。</div>
+            <div class="skill-meta">
+              <span>⭐ 4.8</span>
+              <span>3.4K 安装</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-od-id="categories">
+      <div class="container stack" style="gap: 56px;">
+        <div style="max-width: 36ch;">
+          <p class="eyebrow">CATEGORIES · 分类</p>
+          <h2>浏览所有分类</h2>
+        </div>
+        <div class="grid-4">
+          <div class="category-card">
+            <div class="category-icon">🎨</div>
+            <div class="category-name">设计与创意</div>
+            <div class="category-count">42 个技能</div>
+          </div>
+          <div class="category-card">
+            <div class="category-icon">💻</div>
+            <div class="category-name">开发工具</div>
+            <div class="category-count">68 个技能</div>
+          </div>
+          <div class="category-card">
+            <div class="category-icon">📊</div>
+            <div class="category-name">数据分析</div>
+            <div class="category-count">35 个技能</div>
+          </div>
+          <div class="category-card">
+            <div class="category-icon">🤖</div>
+            <div class="category-name">AI 智能</div>
+            <div class="category-count">56 个技能</div>
+          </div>
+          <div class="category-card">
+            <div class="category-icon">⚡</div>
+            <div class="category-name">自动化</div>
+            <div class="category-count">29 个技能</div>
+          </div>
+          <div class="category-card">
+            <div class="category-icon">🖼️</div>
+            <div class="category-name">媒体处理</div>
+            <div class="category-count">24 个技能</div>
+          </div>
+          <div class="category-card">
+            <div class="category-icon">📝</div>
+            <div class="category-name">办公效率</div>
+            <div class="category-count">41 个技能</div>
+          </div>
+          <div class="category-card">
+            <div class="category-icon">🔌</div>
+            <div class="category-name">系统集成</div>
+            <div class="category-count">18 个技能</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-od-id="cta">
+      <div class="container" style="text-align: center;">
+        <div style="max-width: 52ch; margin: 0 auto;">
+          <p class="eyebrow">GET STARTED · 开始使用</p>
+          <h2>扩展你的工作流</h2>
+          <p class="lead" style="margin: 20px auto 32px;">加入数千名开发者和创作者，用技能释放 OpenClaw 的全部潜力。</p>
+          <button class="btn btn-primary" style="font-size: 17px; padding: 14px 28px;">免费开始使用</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pagefoot" data-od-id="footer">
+    <div class="container row-between">
+      <span>© 2026 OpenClaw · 技能市场</span>
+      <span class="meta">Made with 🤖 by OpenClaw Team</span>
+    </div>
+  </footer>
+</body>
+</html>

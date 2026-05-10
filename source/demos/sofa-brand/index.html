@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LUMIÈRE · 高级定制家居</title>
+  <style>
+    :root {
+      --bg:      #f7f5f2;   /* 温暖米白色背景 */
+      --surface: #ffffff;   /* 纯白卡片 */
+      --fg:      #2c2723;   /* 深棕色主文字 */
+      --muted:   #7a7066;   /* 温暖灰色次要文字 */
+      --border:  #e5ddd5;   /* 温暖边框色 */
+      --accent:  #8b5a3c;   /* 高级棕色强调色 */
+
+      /* derived — do not change */
+      --accent-soft: color-mix(in oklch, var(--accent) 10%, transparent);
+      --fg-soft:     color-mix(in oklch, var(--fg) 4%, transparent);
+
+      /* type */
+      --font-display: 'Iowan Old Style', 'Charter', Georgia, 'Times New Roman', serif;
+      --font-body:    -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --font-mono:    ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+      /* scale */
+      --fs-h1: clamp(48px, 6.5vw, 82px);
+      --fs-h2: clamp(34px, 4vw, 52px);
+      --fs-h3: 22px;
+      --fs-lead: 19px;
+      --fs-body: 16px;
+      --fs-meta: 13px;
+
+      /* spacing */
+      --gap-xs: 8px;
+      --gap-sm: 12px;
+      --gap-md: 20px;
+      --gap-lg: 32px;
+      --gap-xl: 56px;
+      --gap-2xl: 96px;
+      --container: 1200px;
+      --gutter: 32px;
+
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: var(--fs-body);
+      line-height: 1.55;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+    p { text-wrap: pretty; }
+    h1, h2, h3, h4 { text-wrap: balance; }
+
+    .container {
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+    .section {
+      padding-block: clamp(56px, 9vw, var(--gap-2xl));
+    }
+    .section + .section { border-top: 1px solid var(--border); }
+    .stack { display: flex; flex-direction: column; }
+    .stack > * + * { margin-top: var(--gap-md); }
+    .row { display: flex; align-items: center; gap: var(--gap-md); }
+    .row-between { display: flex; align-items: center; justify-content: space-between; gap: var(--gap-md); }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gap-lg); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-lg); }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap-md); }
+    .grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: var(--gap-xl); align-items: start; }
+    .grid-1-2 { display: grid; grid-template-columns: 1fr 2fr; gap: var(--gap-xl); align-items: start; }
+    @media (max-width: 920px) {
+      .grid-2, .grid-3, .grid-4, .grid-2-1, .grid-1-2 { grid-template-columns: 1fr; }
+    }
+
+    .h1, h1 { font-family: var(--font-display); font-size: var(--fs-h1); line-height: 1.04; letter-spacing: -0.02em; margin: 0; font-weight: 400; }
+    .h2, h2 { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.1; letter-spacing: -0.015em; margin: 0; font-weight: 400; }
+    .h3, h3 { font-size: var(--fs-h3); font-weight: 500; line-height: 1.3; letter-spacing: -0.005em; margin: 0; }
+    .lead   { font-size: var(--fs-lead); line-height: 1.55; color: var(--muted); max-width: 60ch; margin: 0; }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 var(--gap-md);
+    }
+    .meta { font-family: var(--font-mono); font-size: var(--fs-meta); color: var(--muted); }
+    .num  { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+    .topnav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in oklch, var(--bg) 94%, transparent);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topnav-inner { display: flex; align-items: center; justify-content: space-between; padding-block: 16px; }
+    .topnav .logo { font-family: var(--font-display); font-size: 21px; font-weight: 500; letter-spacing: 0.08em; }
+    .topnav nav { display: flex; gap: var(--gap-lg); }
+    .topnav nav a { font-size: 14px; color: var(--muted); transition: color 0.2s ease; }
+    .topnav nav a:hover { color: var(--fg); }
+    .pagefoot { padding-block: var(--gap-xl); color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); }
+    .pagefoot .row-between { flex-wrap: wrap; gap: var(--gap-md); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 13px 24px;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: transform 0.08s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+    .btn-primary:hover { background: color-mix(in oklch, var(--accent) 85%, black); }
+    .btn-secondary { background: transparent; color: var(--fg); border-color: var(--border); }
+    .btn-secondary:hover { border-color: var(--fg); }
+    .btn-ghost { background: transparent; color: var(--fg); border-color: transparent; padding-inline: 10px; }
+    .btn-ghost:hover { color: var(--accent); }
+    .btn-arrow::after { content: '→'; transition: transform 0.15s ease; }
+    .btn-arrow:hover::after { transform: translateX(3px); }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+    .card-flat { background: transparent; border: 0; padding: 0; }
+    .card-rule { background: transparent; border: 0; border-top: 1px solid var(--fg); padding: 24px 0 0; border-radius: 0; }
+
+    .feature .feature-mark {
+      width: 40px; height: 40px;
+      display: grid; place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--accent);
+      margin-bottom: var(--gap-md);
+    }
+    .feature .feature-mark svg { width: 18px; height: 18px; }
+    .feature h3 { margin-bottom: 8px; }
+    .feature p  { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .stat .stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 8vw, 96px);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--accent);
+      font-weight: 300;
+    }
+    .stat .stat-label { color: var(--muted); font-size: 14px; margin-top: 8px; max-width: 24ch; }
+    .stat .stat-unit  { font-size: 0.5em; opacity: 0.7; margin-left: 2px; }
+
+    .quote {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 2.6vw, 32px);
+      line-height: 1.32;
+      letter-spacing: -0.01em;
+      max-width: 28ch;
+      font-weight: 300;
+    }
+    .quote-author { color: var(--muted); font-size: 14px; margin-top: var(--gap-md); }
+    .quote-mark   {
+      font-family: var(--font-display);
+      font-size: 140px; line-height: 0.7;
+      color: var(--accent); opacity: 0.12;
+      margin-bottom: -28px;
+    }
+
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .tag {
+      display: inline-flex; align-items: center;
+      padding: 5px 12px;
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .ph-img {
+      background:
+        linear-gradient(135deg, var(--accent-soft), var(--fg-soft)),
+        var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      aspect-ratio: 16 / 10;
+      display: grid; place-items: center;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+    .ph-img.square    { aspect-ratio: 1 / 1; }
+    .ph-img.portrait  { aspect-ratio: 3 / 4; }
+    .ph-img.wide      { aspect-ratio: 16 / 9; }
+
+    .rule  { border: 0; border-top: 1px solid var(--border); margin: 0; }
+    .rule-strong { border: 0; border-top: 1px solid var(--fg); margin: 0; }
+
+    .hero          { padding-block: clamp(96px, 14vw, 180px); }
+    .hero-center   { text-align: center; max-width: 32ch; margin-inline: auto; }
+    .hero h1       { margin-bottom: var(--gap-md); }
+    .hero .lead    { margin-bottom: var(--gap-lg); }
+    .hero-cta      { display: inline-flex; gap: var(--gap-sm); flex-wrap: wrap; }
+    .hero-center .hero-cta { justify-content: center; }
+    .hero-split    { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-2xl); align-items: center; }
+    @media (max-width: 920px) { .hero-split { grid-template-columns: 1fr; } }
+
+    .log-row { display: grid; grid-template-columns: 120px 1fr 100px; gap: var(--gap-lg); padding: 22px 0; border-top: 1px solid var(--border); align-items: baseline; }
+    .log-row .meta { color: var(--muted); }
+    .log-row h3 { font-size: 19px; }
+    .log-row .pull { text-align: right; }
+
+    /* Product Card Customization */
+    .product-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.08);
+    }
+    .product-image {
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(135deg, #e8e0d8 0%, #d4c8bc 100%);
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+    .product-image::after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 40%;
+      background: linear-gradient(135deg, #8b5a3c 0%, #a67c52 50%, #6b4423 100%);
+      border-radius: 50% 50% 10% 10% / 30% 30% 10% 10%;
+      opacity: 0.7;
+    }
+    .product-info {
+      padding: 24px;
+    }
+    .product-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      margin: 0 0 6px;
+    }
+    .product-desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0 0 12px;
+    }
+    .product-price {
+      font-family: var(--font-display);
+      font-size: 18px;
+      color: var(--accent);
+    }
+
+    /* Material Swatch */
+    .swatch {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: inline-block;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topnav" data-od-id="topnav">
+    <div class="container topnav-inner">
+      <span class="logo">LUMIÈRE</span>
+      <nav>
+        <a href="#collection">系列</a>
+        <a href="#craft">工艺</a>
+        <a href="#about">品牌</a>
+        <a href="#contact">联系</a>
+      </nav>
+      <button class="btn btn-primary">预约体验</button>
+    </div>
+  </header>
+
+  <main id="content">
+    <!-- Hero Section -->
+    <section class="section" data-od-id="hero-split">
+      <div class="container hero-split">
+        <div>
+          <p class="eyebrow">EST. 2018 · MILANO</p>
+          <h1>光影之间<br />定义舒适美学</h1>
+          <p class="lead" style="margin-top: 24px;">每一件 LUMIÈRE 沙发都经过 128 道工序精心打造，采用意大利进口头层牛皮，融合北欧极简设计哲学。</p>
+          <div class="hero-cta" style="margin-top: 32px;">
+            <button class="btn btn-primary">浏览系列</button>
+            <button class="btn btn-ghost btn-arrow">了解工艺</button>
+          </div>
+        </div>
+        <div class="product-image" style="aspect-ratio: 4/3; border-radius: var(--radius-lg);">
+          <!-- Hero Sofa Visual -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Collection Section -->
+    <section class="section" id="collection" data-od-id="collection">
+      <div class="container stack" style="gap: 56px;">
+        <div class="row-between" style="align-items: end;">
+          <div>
+            <p class="eyebrow">COLLECTION · 2026</p>
+            <h2>臻选系列</h2>
+          </div>
+          <a class="btn btn-ghost btn-arrow" href="#">查看全部</a>
+        </div>
+        <div class="grid-3">
+          <div class="product-card">
+            <div class="product-image"></div>
+            <div class="product-info">
+              <p class="meta">MODULAR SERIES</p>
+              <h3 class="product-name">云境·Cloud</h3>
+              <p class="product-desc">可模块化组合，深度坐感，羽绒填充靠包</p>
+              <p class="product-price">¥ 36,800</p>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-image" style="background: linear-gradient(135deg, #d4c8bc 0%, #c4b4a4 100%);"></div>
+            <div class="product-info">
+              <p class="meta">CLASSIC SERIES</p>
+              <h3 class="product-name">月影·Luna</h3>
+              <p class="product-desc">经典三人位，优雅弧线，全粒面苯胺革</p>
+              <p class="product-price">¥ 28,600</p>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-image" style="background: linear-gradient(135deg, #c9bfb5 0%, #b8a898 100%);"></div>
+            <div class="product-info">
+              <p class="meta">LOUNGE SERIES</p>
+              <h3 class="product-name">栖居·Nest</h3>
+              <p class="product-desc">围合式设计，超大坐深，家庭社交中心</p>
+              <p class="product-price">¥ 42,800</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Craftsmanship Section -->
+    <section class="section" id="craft" data-od-id="craft">
+      <div class="container stack" style="gap: 56px;">
+        <div style="max-width: 38ch;">
+          <p class="eyebrow">CRAFTSMANSHIP · 匠心</p>
+          <h2>128道工序<br />只为一件作品</h2>
+        </div>
+        <div class="grid-3">
+          <div class="feature">
+            <div class="feature-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3>意大利头层牛皮</h3>
+            <p>精选阿尔卑斯山区全粒面牛皮，每一张都经过 72 小时植物鞣制，保留天然纹理与透气特性。</p>
+          </div>
+          <div class="feature">
+            <div class="feature-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>北欧白蜡木框架</h3>
+            <p>二十年树龄芬兰白蜡木，榫卯结构拼接，承重力可达 1500kg，提供终身质保服务。</p>
+          </div>
+          <div class="feature">
+            <div class="feature-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3>鹅绒混合填充</h3>
+            <p>90% 白鹅绒 + 10% 记忆棉黄金比例，久坐不塌陷，支撑与舒适达到完美平衡。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="section" data-od-id="quote">
+      <div class="container" style="max-width: 800px;">
+        <div class="quote-mark">"</div>
+        <blockquote class="quote">好的沙发，是家的心脏。它不只是一件家具，而是无数个傍晚、周末、年月里，承载你所有放松与真实的那个地方。</blockquote>
+        <p class="quote-author">— 林悦，LUMIÈRE 创始人 & 设计总监</p>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section" data-od-id="stats">
+      <div class="container">
+        <p class="eyebrow" style="margin-bottom: 48px;">BY THE NUMBERS · 数据</p>
+        <div class="grid-4">
+          <div class="stat">
+            <div class="stat-num num">128<span class="stat-unit">道</span></div>
+            <p class="stat-label">工序，每件产品都经过 3 次全检</p>
+          </div>
+          <div class="stat">
+            <div class="stat-num num">15<span class="stat-unit">年</span></div>
+            <p class="stat-label">框架质保，我们对自己的工艺有信心</p>
+          </div>
+          <div class="stat">
+            <div class="stat-num num">2,847</div>
+            <p class="stat-label">个家庭的选择，复购率超过 62%</p>
+          </div>
+          <div class="stat">
+            <div class="stat-num num">98<span class="stat-unit">%</span></div>
+            <p class="stat-label">客户满意度，每一条评价都真实可查</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Materials Section -->
+    <section class="section" id="about" data-od-id="materials">
+      <div class="container grid-1-2" style="align-items: center;">
+        <div>
+          <p class="eyebrow">MATERIALS · 材质</p>
+          <h2>六种精选皮色<br />适配任何空间</h2>
+          <p class="lead" style="margin-top: 16px;">从温暖的焦糖棕到沉静的石墨灰，每一款颜色都经过 300 小时耐光照测试，十年如新。</p>
+          <div style="margin-top: 24px;">
+            <span class="swatch" style="background: #8b5a3c;"></span>
+            <span class="swatch" style="background: #a67c52;"></span>
+            <span class="swatch" style="background: #4a4540;"></span>
+            <span class="swatch" style="background: #2c2723;"></span>
+            <span class="swatch" style="background: #c9bfb5;"></span>
+            <span class="swatch" style="background: #6b7c6d;"></span>
+            <p class="meta" style="margin-top: 12px;">焦糖棕 · 燕麦色 · 石墨灰 · 墨黑 · 云石灰 · 松针绿</p>
+          </div>
+          <div style="margin-top: 32px;">
+            <button class="btn btn-primary">预约材质样册</button>
+          </div>
+        </div>
+        <div class="ph-img" style="aspect-ratio: 1 / 1; border-radius: var(--radius-lg);">
+          <!-- Material Swatch Visual -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" id="contact" data-od-id="cta-strip" style="text-align: center;">
+      <div class="container" style="max-width: 600px;">
+        <h2>来我们的体验店<br />坐一坐，感受一下</h2>
+        <p class="lead" style="margin: 20px auto 32px;">上海 · 北京 · 杭州 · 深圳 · 成都<br />全国 12 家体验店，提供一对一软装设计咨询</p>
+        <button class="btn btn-primary">预约到店体验</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pagefoot" data-od-id="footer">
+    <div class="container row-between">
+      <div class="row" style="gap: 40px;">
+        <span style="font-family: var(--font-display); font-size: 18px; letter-spacing: 0.08em;">LUMIÈRE</span>
+        <span>© 2026 LUMIÈRE HOME</span>
+      </div>
+      <div class="row" style="gap: 32px;">
+        <a href="#" class="meta">Instagram</a>
+        <a href="#" class="meta">WeChat</a>
+        <a href="#" class="meta">小红书</a>
+        <span class="meta">400-888-9999</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

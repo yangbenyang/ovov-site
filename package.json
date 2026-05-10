@@ -6,6 +6,7 @@
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
+    "new:tutorial": "node tools/new-tutorial.js",
     "server": "hexo server",
     "u": "hexo clean && hexo g && gulp && hexo d"
   },

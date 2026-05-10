@@ -1,48 +1,23 @@
-- name: schedule
-  id: card-widget-schedule
+- name: wechat
+  id: card-widget-wechat
+  class: contact-card
+  icon: fas fa-qrcode
+  title: 微信咨询
   content_html: |
-    <div id="schedule-area-left">
-      <div id="schedule-title">距离除夕</div>
-      <div id="schedule-days"></div>
-      <div id="schedule-date">2025-01-28</div>
-    </div>
-    <div id="schedule-area-right">
-      <div class="schedule-r0">
-        <div class="schedule-d0">本年</div>
-        <div class="schedule-d1">
-          <span id="p_span_year" class="aside-span1"></span>
-          <span class="aside-span2">还剩<a></a>天</span>
-          <progress max="365" id="pBar_year"></progress>
-        </div>
-      </div>
-      <div class="schedule-r1">
-        <div class="schedule-d0">本月</div>
-        <div class="schedule-d1">
-          <span id="p_span_month" class="aside-span1"></span>
-          <span class="aside-span2">还剩<a></a>天</span>
-          <progress max="30" id="pBar_month"></progress>
-        </div>
-      </div>
-      <div class="schedule-r2">
-        <div class="schedule-d0">本周</div>
-        <div class="schedule-d1">
-          <span id="p_span_week" class="aside-span1"></span>
-          <span class="aside-span2">还剩<a></a>天</span>
-          <progress max="7" id="pBar_week"></progress>
-        </div>
-      </div>
+    <div class="wechat-contact-card" id="wechat-contact">
+      <img class="wechat-contact-qr" src="/img/wechat-contact.jpg" alt="微信二维码：小编 AI">
+      <div class="wechat-contact-title">扫码添加小编 AI</div>
+      <div class="wechat-contact-desc">获取 OpenClaw 模型配置与网页设计教程支持。</div>
+      <div class="wechat-contact-note">添加时请备注：OpenClaw</div>
     </div>
 
-- name: calendar
-  id: card-widget-calendar
+- name: learningPath
+  id: card-widget-learning-path
+  class: learning-path-card
+  icon: fas fa-route
+  title: 学习路径
   content_html: |
-    <div id="calendar-area-left">
-      <div id="calendar-week"></div>
-      <div id="calendar-date" style="font-size: 48px;"></div>
-      <div id="calendar-solar"></div>
-      <div id="calendar-lunar"></div>
-    </div>
-    <div id="calendar-area-right">
-      <div id="calendar-main">
-      </div>
+    <div class="learning-path-list">
+      <a href="/categories/模型配置/"><span>01</span><strong>模型配置</strong><em>API Key、模型地址与模型 ID</em></a>
+      <a href="/categories/网页设计/"><span>02</span><strong>网页设计</strong><em>用 open-design-artifacts 生成网站</em></a>
     </div>

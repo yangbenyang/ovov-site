@@ -17,25 +17,14 @@ nav:
   # Left Box
   # 左侧盒子
   group:
-    官方:
-      OpenClaw: https://github.com/openclaw/openclaw || /img/logo.png # name: url || icon
 
   # Menu
   # 菜单
   menu:
     首页: /
-    教程:
-      全部教程: /archives/ || fas fa-folder-open
-      入门教程: /categories/入门教程/ || fas fa-route
-      安装部署: /categories/安装部署/ || fas fa-download
-      模型配置: /categories/模型配置/ || fas fa-sliders
-      技能开发: /categories/技能开发/ || fas fa-code
-    资源:
-      全部分类: /categories/ || fas fa-clone
-      全部标签: /tags/ || fas fa-tags
-      OpenClaw GitHub: https://github.com/openclaw/openclaw || fab fa-github
-    关于:
-      关于本站: /about/ || fas fa-circle-info
+    模型配置: /categories/模型配置/
+    网页设计: /categories/网页设计/
+    联系微信: /about/#wechat-contact
 
   # Right button
   # 右侧按钮
@@ -89,8 +78,8 @@ aside:
   # Sticky: Fixed position / noSticky: Not fixed position
   # Sticky: 固定位置 / noSticky: 不固定位置
   home: # on the homepage
-    noSticky: "about,calendar,schedule"
-    Sticky: "allInfo"
+    noSticky: "wechat,learningPath"
+    Sticky: "newestPost,allInfo"
   post: # on the article page
     noSticky: "about"
     Sticky: "newestPost"
@@ -105,11 +94,11 @@ aside:
   # 信息卡
   my_card:
     author:
-      img: https://avatars.githubusercontent.com/yangbenyang
+      img: /img/logo.png
       sticker: /img/logo.png # url, 24x24 size
-    description: 系统整理 OpenClaw 的安装、配置、接入和实战教程。
+    description: 这里整理 OpenClaw 模型配置与网页设计教程，帮助你完成配置、生成网页设计稿。
     # 内容 / Content
-    content: 这里按学习路径整理 OpenClaw 教程，帮助你从本地跑通到接入模型、频道、技能和安全运维。
+    content: 先完成模型配置，再用 open-design-artifacts 生成网站首页和品牌页面。
     state:
       morning: ✨ 早上好，新的一天开始了
       noon: 🍲 午餐时间
@@ -123,9 +112,7 @@ aside:
     # social
     # 社交信息图标
     information:
-      GitHub: https://github.com/openclaw/openclaw || fab fa-github # Name: link || icon
-      Docs: https://openclawdoc.com/docs/intro/ || fas fa-book
-      Blog: https://ovov.fun || fas fa-globe
+      微信咨询: /about/#wechat-contact || fas fa-qrcode # Name: link || icon
   # --------------------------- end ---------------------------
 
   # --------------------------- start ---------------------------
@@ -487,10 +474,9 @@ footer:
   information:
     author: /img/logo.png
     left:
-      GitHub: https://github.com/openclaw/openclaw || fab fa-github # 名称: 链接 || 图标
-      Docs: https://openclawdoc.com/docs/intro/ || fas fa-book
+      微信咨询: /about/#wechat-contact || fas fa-qrcode # 名称: 链接 || 图标
     right:
-      Blog: https://ovov.fun || fas fa-globe
+      全部教程: /archives/ || fas fa-folder-open
   # 页脚分组
   group:
     导航:
@@ -498,9 +484,8 @@ footer:
       全部分类: /categories/
       全部标签: /tags/
     教程:
-      入门教程: /categories/入门教程/
-      安装部署: /categories/安装部署/
-      技能开发: /categories/技能开发/
+      模型配置: /categories/模型配置/
+      网页设计: /categories/网页设计/
     协议:
       Apache-2.0: https://www.apache.org/licenses/LICENSE-2.0.html
 
@@ -521,7 +506,7 @@ footer:
     - name: 订阅
       url: /atom.xml
     - name: License
-      url: https://github.com/everfu/hexo-theme-solitude/blob/main/LICENSE
+      url: https://www.apache.org/licenses/LICENSE-2.0.html
       icon:
         - fas fa-copyright
         - fab fa-creative-commons-by
@@ -719,14 +704,12 @@ extends:
   # 插入到 head
   head:
     - <script>localStorage.removeItem("aside-status");document.documentElement.classList.remove("hide-aside");</script>
-    - <link rel="stylesheet" href="/css/schedule.css">
+    - <link rel="stylesheet" href="/css/site-custom.css">
   #  - <script src="https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/pace.min.js"></script>
 
   # Insert in body
   # 插入到 body
-  body:
-    - <script src="/js/schedule.js"></script>
-    - <script src="https://npm.akass.cn/chinese-lunar@0.1.4/lib/chinese-lunar.js"></script>
+  body: []
 # --------------------------- end ---------------------------
 
 # --------------------------- start ---------------------------

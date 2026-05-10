@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LUMIÈRE · 投资人 Pitch Deck</title>
+<link rel="stylesheet" href="../skills/open-design-artifacts/assets/html-ppt/assets/fonts.css">
+<link rel="stylesheet" href="../skills/open-design-artifacts/assets/html-ppt/assets/base.css">
+<link rel="stylesheet" href="../skills/open-design-artifacts/assets/html-ppt/assets/animations/animations.css">
+<style>
+/* LUMIÈRE 奢华家居主题 - 投资人版 */
+:root {
+  --bg: #f7f5f2;
+  --bg-soft: #f0ebe6;
+  --surface: #ffffff;
+  --surface-2: #faf8f6;
+  --border: #e5ddd5;
+  --border-soft: #ede8e3;
+  --text-1: #2c2723;
+  --text-2: #5c554e;
+  --text-3: #8c847c;
+  --accent: #8b5a3c;
+  --accent-2: #a67c52;
+  --accent-3: #6b4423;
+  --good: #5a7c5c;
+  --warn: #b8860b;
+  --bad: #a0522d;
+  --grad: linear-gradient(135deg, #8b5a3c 0%, #a67c52 50%, #c9a86c 100%);
+  --grad-soft: linear-gradient(135deg, rgba(139,90,60,0.08), rgba(166,124,82,0.04));
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --shadow-sm: 0 2px 8px rgba(44,39,35,0.04);
+  --shadow-md: 0 8px 24px rgba(44,39,35,0.06);
+  --shadow-lg: 0 16px 48px rgba(44,39,35,0.08);
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text-1);
+}
+
+.deck {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 112px;
+  box-sizing: border-box;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateX(30px);
+  overflow: hidden;
+}
+.slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+  z-index: 2;
+}
+
+.slide-number {
+  position: absolute;
+  bottom: 40px;
+  right: 112px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.h1 {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 5.5vw, 72px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-1);
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--text-1);
+}
+
+.h3 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--text-1);
+}
+
+.lede {
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--text-2);
+  max-width: 60ch;
+}
+
+.gradient-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.g2 { grid-template-columns: repeat(2, 1fr); }
+.g3 { grid-template-columns: repeat(3, 1fr); }
+.g4 { grid-template-columns: repeat(4, 1fr); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-accent {
+  background: linear-gradient(135deg, rgba(139,90,60,0.08), rgba(166,124,82,0.04));
+  border-color: var(--accent);
+}
+
+.card h4 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 10px;
+}
+
+.dim {
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.metric .n {
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 400;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.metric .l {
+  color: var(--text-2);
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-3);
+  letter-spacing: 0.1em;
+}
+
+.num-tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 8px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.pill-accent {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.traction-bar {
+  display: flex;
+  align-items: end;
+  gap: 16px;
+  height: 200px;
+  padding: 0 20px;
+}
+
+.traction-bar .bar {
+  flex: 1;
+  background: var(--grad);
+  border-radius: 8px 8px 0 0;
+  position: relative;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.traction-bar .bar:hover {
+  opacity: 1;
+}
+
+.traction-bar .bar em {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.traction-bar .bar span {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.team-card {
+  text-align: center;
+}
+
+.team-card .avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--grad);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 16px;
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: white;
+  font-weight: 500;
+}
+
+.ask-box {
+  background: var(--grad);
+  border-radius: var(--radius-xl);
+  padding: 48px;
+  color: white;
+}
+
+.ask-box .h2 {
+  color: white;
+}
+
+.ask-box .dim {
+  color: rgba(255,255,255,0.8);
+}
+
+.mega {
+  font-family: var(--font-display);
+  font-size: clamp(64px, 8vw, 96px);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--text-1);
+}
+
+.mega-sub {
+  font-size: 24px;
+  color: var(--text-2);
+  margin-top: 16px;
+}
+
+.cover-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(139,90,60,0.06), rgba(166,124,82,0.03));
+  z-index: 0;
+}
+
+.cover-blob {
+  position: absolute;
+  top: 20%;
+  right: 15%;
+  width: 300px;
+  height: 300px;
+  background: var(--grad);
+  border-radius: 50%;
+  opacity: 0.1;
+  filter: blur(60px);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 24px;
+  letter-spacing: 0.08em;
+  color: var(--text-1);
+}
+
+.brand-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.center {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.tc {
+  text-align: center;
+}
+
+/* Spacing utilities */
+.mt-s { margin-top: 12px; }
+.mt-m { margin-top: 24px; }
+.mt-l { margin-top: 40px; }
+.mt-xl { margin-top: 64px; }
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.product-visual {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #e8e0d8 0%, #d4c8bc 100%);
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-visual::after {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  width: 60%;
+  height: 50%;
+  background: linear-gradient(135deg, #8b5a3c 0%, #a67c52 50%, #6b4423 100%);
+  border-radius: 40% 40% 15% 15% / 30% 30% 15% 15%;
+  opacity: 0.7;
+}
+
+.chart-area {
+  height: 200px;
+  background: 
+    linear-gradient(90deg, var(--border-soft) 1px, transparent 1px),
+    linear-gradient(var(--border-soft) 1px, transparent 1px);
+  background-size: 40px 40px;
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80%;
+  background: var(--grad-soft);
+  clip-path: polygon(0 85%, 16% 70%, 33% 60%, 50% 45%, 66% 30%, 83% 20%, 100% 10%, 100% 100%, 0 100%);
+}
+
+.chart-line-top {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80%;
+  background: none;
+  border-top: 3px solid var(--accent);
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  clip-path: polygon(0 85%, 16% 70%, 33% 60%, 50% 45%, 66% 30%, 83% 20%, 100% 10%, 100% 100%, 0 100%);
+}
+
+@media (max-width: 768px) {
+  .slide {
+    padding: 48px 32px;
+  }
+  .slide-number {
+    right: 32px;
+  }
+  .g2, .g3, .g4 {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- 1. Cover -->
+  <section class="slide" data-title="封面">
+    <div class="cover-bg"></div>
+    <div class="cover-blob"></div>
+    <div style="position:absolute;top:56px;left:112px">
+      <span class="brand-dot"></span>
+      <span class="brand">LUMIÈRE</span>
+    </div>
+    <div style="position:relative;z-index:1;padding-top:120px">
+      <p class="kicker">A 轮融资 · 2026</p>
+      <h1 class="h1 anim-fade-up mt-m" data-anim="fade-up">重新定义<br><span class="gradient-text">中国高端家居体验</span></h1>
+      <p class="lede mt-l">从一张沙发开始，打造集设计、制造、零售、服务于一体的全链条高端家居品牌。让每个家庭都拥有值得传承的好家具。</p>
+      <div class="row mt-xl">
+        <span class="pill pill-accent">估值 2.8 亿</span>
+        <span class="pill">融资 4200 万</span>
+        <span class="pill">18 个月跑道</span>
+      </div>
+    </div>
+    <div class="deck-footer"><span>林悦 · 创始人 & CEO</span><span class="slide-number" data-current="1" data-total="12"></span></div>
+  </section>
+
+  <!-- 2. Problem -->
+  <section class="slide" data-title="市场痛点">
+    <span class="section-num">01</span>
+    <p class="num-tag">PROBLEM</p>
+    <h2 class="h2 mt-s">3 万亿家居市场<br>为什么没有令人尊敬的品牌？</h2>
+    <div class="grid g3 mt-l">
+      <div class="card">
+        <h4>😐 品质断层</h4>
+        <p class="dim">低价市场充斥劣质产品，高端市场被海外品牌垄断，价格溢价 3-5 倍。中产消费者无合适选择。</p>
+      </div>
+      <div class="card">
+        <h4>🏭 渠道冗余</h4>
+        <p class="dim">传统家居卖场层层加价，出厂价到零售价平均翻 4 倍。消费者为 70% 的渠道成本买单。</p>
+      </div>
+      <div class="card">
+        <h4>😰 体验糟糕</h4>
+        <p class="dim">购买周期长达 2-3 个月，送货延迟、安装出错、售后无保障是常态。满意度行业平均不足 40%。</p>
+      </div>
+    </div>
+    <span class="slide-number" data-current="2" data-total="12"></span>
+  </section>
+
+  <!-- 3. Solution -->
+  <section class="slide" data-title="解决方案">
+    <span class="section-num">02</span>
+    <p class="num-tag">SOLUTION</p>
+    <h2 class="h2 mt-s">LUMIÈRE = <span class="gradient-text">DTC 模式</span><br>+ 全链条品质控制</h2>
+    <p class="lede mt-m">我们砍掉所有中间环节，从意大利进口头层皮，自有工厂精工制造，体验店直营销售。出厂到用户家，只加价 2.5 倍。</p>
+    <div class="row mt-l" style="gap:12px">
+      <span class="pill pill-accent">意大利进口原料</span>
+      <span class="pill pill-accent">自有工厂制造</span>
+      <span class="pill pill-accent">体验店直营</span>
+      <span class="pill pill-accent">15 年框架质保</span>
+      <span class="pill pill-accent">终身维护服务</span>
+    </div>
+    <span class="slide-number" data-current="3" data-total="12"></span>
+  </section>
+
+  <!-- 4. Market -->
+  <section class="slide" data-title="市场规模">
+    <span class="section-num">03</span>
+    <p class="num-tag">MARKET</p>
+    <h2 class="h2 mt-s">一个正在爆发的<br>万亿级消费升级赛道</h2>
+    <div class="grid g3 mt-l">
+      <div class="metric">
+        <div class="n">3.8 万亿</div>
+        <div class="l">中国家居市场总规模（2025）</div>
+      </div>
+      <div class="metric">
+        <div class="n">18.6%</div>
+        <div class="l">高端家居市场年复合增长率</div>
+      </div>
+      <div class="metric">
+        <div class="n">4200 万</div>
+        <div class="l">新中产家庭数量，持续增长中</div>
+      </div>
+    </div>
+    <p class="lede mt-l">消费者不再为品牌溢价买单，而是为真实的材质、工艺和体验付费。DTC 家居品牌的黄金时代刚刚开始。</p>
+    <span class="slide-number" data-current="4" data-total="12"></span>
+  </section>
+
+  <!-- 5. Product -->
+  <section class="slide" data-title="产品矩阵">
+    <span class="section-num">04</span>
+    <p class="num-tag">PRODUCT</p>
+    <h2 class="h2 mt-s">从沙发单品<br>到全品类家居生态</h2>
+    <div class="grid g3 mt-l">
+      <div class="card">
+        <div class="product-visual"></div>
+        <h4>云境 · Cloud</h4>
+        <p class="dim">模块化组合沙发，核心爆款。客单价 ¥36,800，贡献 45% 营收。</p>
+      </div>
+      <div class="card">
+        <div class="product-visual" style="background: linear-gradient(135deg, #d4c8bc 0%, #c4b4a4 100%)"></div>
+        <h4>月影 · Luna</h4>
+        <p class="dim">经典三人位，入门首选。客单价 ¥28,600，最佳引流产品。</p>
+      </div>
+      <div class="card">
+        <div class="product-visual" style="background: linear-gradient(135deg, #c9bfb5 0%, #b8a898 100%)"></div>
+        <h4>栖居 · Nest</h4>
+        <p class="dim">围合式设计沙发，大平层首选。客单价 ¥42,800，毛利最高。</p>
+      </div>
+    </div>
+    <p class="dim mt-m">2026 年产品线扩展：餐桌椅、床品、茶几边几、灯具。目标 SKU 从 12 个扩展到 40 个。</p>
+    <span class="slide-number" data-current="5" data-total="12"></span>
+  </section>
+
+  <!-- 6. Advantage -->
+  <section class="slide" data-title="核心优势">
+    <span class="section-num">05</span>
+    <p class="num-tag">MOAT</p>
+    <h2 class="h2 mt-s">四个护城河<br>构建难以复制的竞争力</h2>
+    <div class="grid g2 mt-l">
+      <div class="card">
+        <h4>🔬 材质壁垒</h4>
+        <p class="dim">与意大利 3 家顶级皮厂签订排他性供货协议，优先供应中国市场。同品质皮革，我们成本比竞品低 30%。</p>
+      </div>
+      <div class="card">
+        <h4>🏭 工艺壁垒</h4>
+        <p class="dim">128 道工序，每一件产品都经过 3 次全检。拥有 15 年经验的资深工匠团队，行业平均水平的 3 倍。</p>
+      </div>
+      <div class="card">
+        <h4>📱 流量壁垒</h4>
+        <p class="dim">小红书 12 万粉丝，抖音 8 万粉丝，月自然曝光 500 万+。获客成本 ¥380/人，行业平均 ¥1,200。</p>
+      </div>
+      <div class="card">
+        <h4>❤️ 用户壁垒</h4>
+        <p class="dim">NPS 78 分，复购率 62%，老客转介绍率 48%。用户平均生命周期价值 ¥98,000，是首单的 3.2 倍。</p>
+      </div>
+    </div>
+    <span class="slide-number" data-current="6" data-total="12"></span>
+  </section>
+
+  <!-- 7. Business Model -->
+  <section class="slide" data-title="商业模式">
+    <span class="section-num">06</span>
+    <p class="num-tag">BUSINESS MODEL</p>
+    <h2 class="h2 mt-s">健康的盈利结构<br>每一个环节都赚钱</h2>
+    <div class="grid g3 mt-l">
+      <div class="card">
+        <h4>毛利率</h4>
+        <div class="metric mt-s">
+          <div class="n" style="font-size:56px">68%</div>
+          <div class="l">综合毛利率，行业平均 45%</div>
+        </div>
+      </div>
+      <div class="card card-accent">
+        <h4>净利率</h4>
+        <div class="metric mt-s">
+          <div class="n" style="font-size:56px">28%</div>
+          <div class="l">成熟门店净利率，行业平均 8-12%</div>
+        </div>
+      </div>
+      <div class="card">
+        <h4>单店年收</h4>
+        <div class="metric mt-s">
+          <div class="n" style="font-size:56px">1800 万</div>
+          <div class="l">单店年营收，10 个月回本</div>
+        </div>
+      </div>
+    </div>
+    <div class="grid g2 mt-l">
+      <div>
+        <p class="dim">收入结构：沙发 65% · 配套产品 25% · 售后服务 10%</p>
+      </div>
+      <div>
+        <p class="dim">成本结构：原料 32% · 制造 18% · 运营 22% · 利润 28%</p>
+      </div>
+    </div>
+    <span class="slide-number" data-current="7" data-total="12"></span>
+  </section>
+
+  <!-- 8. Traction -->
+  <section class="slide" data-title="运营数据">
+    <span class="section-num">07</span>
+    <p class="num-tag">TRACTION</p>
+    <h2 class="h2 mt-s">爆发式增长<br>每个月都在刷新记录</h2>
+    <div class="traction-bar mt-l">
+      <div class="bar" style="height:18%"><em>180 万</em><span>1月</span></div>
+      <div class="bar" style="height:28%"><em>320 万</em><span>2月</span></div>
+      <div class="bar" style="height:42%"><em>480 万</em><span>3月</span></div>
+      <div class="bar" style="height:58%"><em>680 万</em><span>4月</span></div>
+      <div class="bar" style="height:75%"><em>920 万</em><span>5月</span></div>
+      <div class="bar" style="height:100%"><em>1280 万</em><span>6月</span></div>
+    </div>
+    <div class="grid g4 mt-l">
+      <div class="metric">
+        <div class="n" style="font-size:44px">2847</div>
+        <div class="l">付费家庭</div>
+      </div>
+      <div class="metric">
+        <div class="n" style="font-size:44px">78</div>
+        <div class="l">NPS 评分</div>
+      </div>
+      <div class="metric">
+        <div class="n" style="font-size:44px">62%</div>
+        <div class="l">复购率</div>
+      </div>
+      <div class="metric">
+        <div class="n" style="font-size:44px">10 月</div>
+        <div class="l">门店回本周期</div>
+      </div>
+    </div>
+    <span class="slide-number" data-current="8" data-total="12"></span>
+  </section>
+
+  <!-- 9. Roadmap -->
+  <section class="slide" data-title="发展规划">
+    <span class="section-num">08</span>
+    <p class="num-tag">ROADMAP</p>
+    <h2 class="h2 mt-s">18 个月目标<br>成为头部高端家居品牌</h2>
+    <div class="chart-area mt-l">
+      <div class="chart-line"></div>
+      <div class="chart-line-top"></div>
+      <div style="position:absolute;bottom:12px;left:20px;font-family:var(--font-mono);font-size:13px;color:var(--text-3)">2026 H1</div>
+      <div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:13px;color:var(--text-3)">2026 H2</div>
+      <div style="position:absolute;bottom:12px;right:20px;font-family:var(--font-mono);font-size:13px;color:var(--accent);font-weight:600">2027 H2</div>
+      <div style="position:absolute;bottom:80%;left:15%;font-family:var(--font-mono);font-size:13px;color:var(--text-2)">12 家店</div>
+      <div style="position:absolute;bottom:55%;left:45%;font-family:var(--font-mono);font-size:13px;color:var(--text-2)">30 家店</div>
+      <div style="position:absolute;bottom:25%;right:15%;font-family:var(--font-mono);font-size:15px;color:var(--accent);font-weight:600">50 家店 · 5 亿营收</div>
+    </div>
+    <div class="grid g3 mt-l">
+      <div class="card">
+        <h4>🎯 2026 年底</h4>
+        <p class="dim">30 家体验店，覆盖北上广深杭等 15 个城市，年营收 2.2 亿。</p>
+      </div>
+      <div class="card card-accent">
+        <h4>🎯 2027 年中</h4>
+        <p class="dim">50 家体验店，覆盖全部新一线城市，年营收目标 5 亿。</p>
+      </div>
+      <div class="card">
+        <h4>🎯 2028 年</h4>
+        <p class="dim">启动 B 轮，目标 100 家店，年营收 12 亿，启动 IPO 准备。</p>
+      </div>
+    </div>
+    <span class="slide-number" data-current="9" data-total="12"></span>
+  </section>
+
+  <!-- 10. Team -->
+  <section class="slide" data-title="创始团队">
+    <span class="section-num">09</span>
+    <p class="num-tag">TEAM</p>
+    <h2 class="h2 mt-s">连续成功的团队<br>在家居行业深耕 15 年</h2>
+    <div class="grid g3 mt-l">
+      <div class="card team-card">
+        <div class="avatar">林</div>
+        <h4>林悦 · CEO</h4>
+        <p class="dim">前居然之家电商事业部总经理，15 年家居行业经验，操盘过年销 20 亿的产品线。</p>
+      </div>
+      <div class="card team-card">
+        <div class="avatar">张</div>
+        <h4>张伟 · 供应链 VP</h4>
+        <p class="dim">前敏华控股制造总监，12 年沙发工厂管理经验，管理过 2000 人的生产团队。</p>
+      </div>
+      <div class="card team-card">
+        <div class="avatar">陈</div>
+        <h4>陈曦 · CMO</h4>
+        <p class="dim">前小红书家居品类运营负责人，曾 0 预算打造多个百万粉丝家居账号。</p>
+      </div>
+    </div>
+    <p class="dim mt-l" style="text-align:center">核心团队共事平均 8 年，彼此信任，配合默契。</p>
+    <span class="slide-number" data-current="10" data-total="12"></span>
+  </section>
+
+  <!-- 11. Ask -->
+  <section class="slide" data-title="融资需求">
+    <span class="section-num">10</span>
+    <p class="num-tag">THE ASK</p>
+    <div class="ask-box mt-m">
+      <h2 class="h2">A 轮融资 4200 万。</h2>
+      <p class="lede mt-s" style="color:rgba(255,255,255,.9);max-width:60ch">
+        18 个月跑道，目标 2027 年中达到 5 亿年营收，启动 B 轮。
+      </p>
+      <div class="grid g4 mt-l">
+        <div>
+          <div style="font-size:44px;font-weight:600;font-family:var(--font-display)">4200 万</div>
+          <div style="color:rgba(255,255,255,0.8);font-size:14px;margin-top:4px">融资金额</div>
+        </div>
+        <div>
+          <div style="font-size:44px;font-weight:600;font-family:var(--font-display)">15%</div>
+          <div style="color:rgba(255,255,255,0.8);font-size:14px;margin-top:4px">稀释比例</div>
+        </div>
+        <div>
+          <div style="font-size:44px;font-weight:600;font-family:var(--font-display)">2.8 亿</div>
+          <div style="color:rgba(255,255,255,0.8);font-size:14px;margin-top:4px">投后估值</div>
+        </div>
+        <div>
+          <div style="font-size:44px;font-weight:600;font-family:var(--font-display)">18 月</div>
+          <div style="color:rgba(255,255,255,0.8);font-size:14px;margin-top:4px">跑道至 B 轮</div>
+        </div>
+      </div>
+    </div>
+    <div class="grid g4 mt-l">
+      <div class="card" style="padding:20px;text-align:center">
+        <div style="font-family:var(--font-display);font-size:24px;color:var(--accent)">40%</div>
+        <div class="dim mt-s">体验店拓展</div>
+      </div>
+      <div class="card" style="padding:20px;text-align:center">
+        <div style="font-family:var(--font-display);font-size:24px;color:var(--accent)">25%</div>
+        <div class="dim mt-s">供应链升级</div>
+      </div>
+      <div class="card" style="padding:20px;text-align:center">
+        <div style="font-family:var(--font-display);font-size:24px;color:var(--accent)">25%</div>
+        <div class="dim mt-s">品牌与营销</div>
+      </div>
+      <div class="card" style="padding:20px;text-align:center">
+        <div style="font-family:var(--font-display);font-size:24px;color:var(--accent)">10%</div>
+        <div class="dim mt-s">人才与储备</div>
+      </div>
+    </div>
+    <span class="slide-number" data-current="11" data-total="12"></span>
+  </section>
+
+  <!-- 12. Thanks -->
+  <section class="slide center tc" data-title="结尾">
+    <div class="cover-bg"></div>
+    <div style="position:relative;z-index:1">
+      <div class="mega">谢谢。</div>
+      <p class="mega-sub">linyue@lumiere-home.com · www.lumiere-home.com</p>
+      <div class="row mt-xl" style="justify-content:center;gap:24px">
+        <span class="pill pill-accent">期待与您合作</span>
+        <span class="pill">Deck v2.0 · 2026 年 5 月</span>
+      </div>
+      <div style="margin-top:80px">
+        <span class="brand-dot"></span>
+        <span class="brand">LUMIÈRE</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+<script src="../skills/open-design-artifacts/assets/html-ppt/assets/runtime.js"></script>
+</body></html>

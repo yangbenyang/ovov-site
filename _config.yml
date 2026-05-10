@@ -1,8 +1,8 @@
 # Site
 title: OpenClaw 教程
 subtitle:
-description: 系统整理 OpenClaw 的安装部署、模型配置、频道接入、技能开发与安全运维教程。
-keywords: OpenClaw, OpenClaw教程, AI助手, 模型配置, Telegram, Slack, Discord, 自动化工作流
+description: 系统整理 OpenClaw 模型配置与网页设计教程，帮助用户完成 API Key 设置，并用 open-design-artifacts 生成网站设计稿。
+keywords: OpenClaw, OpenClaw教程, AI助手, 模型配置, API Key, DeepSeek, 网页设计, open-design-artifacts
 author: 参数外
 language: zh-CN
 timezone: "Asia/Shanghai"
@@ -40,6 +40,7 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+  - demos/**
 
 # Writing
 new_post_name: :title.md # File name of new posts
