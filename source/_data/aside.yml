@@ -7,7 +7,7 @@
     <div class="wechat-contact-card" id="wechat-contact">
       <img class="wechat-contact-qr" src="/img/wechat-contact.jpg" alt="微信二维码：小编 AI">
       <div class="wechat-contact-title">扫码添加小编 AI</div>
-      <div class="wechat-contact-desc">获取 OpenClaw 模型配置与网页设计教程支持。</div>
+      <div class="wechat-contact-desc">模型配置、插件安装、案例复现遇到问题，都可以扫码咨询。</div>
       <div class="wechat-contact-note">添加时请备注：OpenClaw</div>
     </div>
 
@@ -18,6 +18,20 @@
   title: 学习路径
   content_html: |
     <div class="learning-path-list">
-      <a href="/categories/模型配置/"><span>01</span><strong>模型配置</strong><em>API Key、模型地址与模型 ID</em></a>
-      <a href="/categories/网页设计/"><span>02</span><strong>网页设计</strong><em>用 open-design-artifacts 生成网站</em></a>
+      <a href="/categories/入门教程/"><span>01</span><strong>配置模型</strong><em>API Key、模型地址与模型 ID</em></a>
+      <a href="/plugins/"><span>02</span><strong>下载插件</strong><em>获取设计、办公、社媒插件包</em></a>
+      <a href="/plugins/#install"><span>03</span><strong>安装插件</strong><em>复制指令，让 OpenClaw 自动安装</em></a>
+      <a href="/categories/网页设计/"><span>04</span><strong>跟做案例</strong><em>网页、PPT、文档、动效实战</em></a>
+      <a href="/#wechat-contact"><span>05</span><strong>微信支持</strong><em>不会配置时备注 OpenClaw</em></a>
+    </div>
+
+- name: pluginQuick
+  id: card-widget-plugin-quick
+  class: plugin-quick-card
+  icon: fas fa-download
+  title: 插件下载
+  content_html: |
+    <div class="plugin-quick">
+      <p>把常用 OpenClaw 插件集中到一个入口，下载、安装、案例一起看。</p>
+      <a href="/plugins/">进入插件中心</a>
     </div>

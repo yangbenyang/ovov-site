@@ -22,9 +22,9 @@ nav:
   # 菜单
   menu:
     首页: /
-    模型配置: /categories/模型配置/
-    网页设计: /categories/网页设计/
-    联系微信: /about/#wechat-contact
+    新手入门: /categories/入门教程/
+    插件下载: /plugins/
+    案例教程: /categories/网页设计/
 
   # Right button
   # 右侧按钮
@@ -78,7 +78,7 @@ aside:
   # Sticky: Fixed position / noSticky: Not fixed position
   # Sticky: 固定位置 / noSticky: 不固定位置
   home: # on the homepage
-    noSticky: "wechat,learningPath"
+    noSticky: "wechat,learningPath,pluginQuick"
     Sticky: "newestPost,allInfo"
   post: # on the article page
     noSticky: "about"
@@ -112,7 +112,7 @@ aside:
     # social
     # 社交信息图标
     information:
-      微信咨询: /about/#wechat-contact || fas fa-qrcode # Name: link || icon
+      微信咨询: /#wechat-contact || fas fa-qrcode # Name: link || icon
   # --------------------------- end ---------------------------
 
   # --------------------------- start ---------------------------
@@ -288,8 +288,8 @@ post:
 # --------------------------- start ---------------------------
 # Custom Theme Color
 theme_color:
-  dark: "#3498db" # 深蓝色
-  light: "#f1c40f" # 阳光黄
+  dark: "#ff5a3d" # OpenClaw 橙红
+  light: "#ff6b2c" # OpenClaw 暖橙
 # --------------------------- end ---------------------------
 
 # --------------------------- start ---------------------------
@@ -474,7 +474,7 @@ footer:
   information:
     author: /img/logo.png
     left:
-      微信咨询: /about/#wechat-contact || fas fa-qrcode # 名称: 链接 || 图标
+      微信咨询: /#wechat-contact || fas fa-qrcode # 名称: 链接 || 图标
     right:
       全部教程: /archives/ || fas fa-folder-open
   # 页脚分组
@@ -484,8 +484,9 @@ footer:
       全部分类: /categories/
       全部标签: /tags/
     教程:
-      模型配置: /categories/模型配置/
-      网页设计: /categories/网页设计/
+      新手入门: /categories/入门教程/
+      插件下载: /plugins/
+      案例教程: /categories/网页设计/
     协议:
       Apache-2.0: https://www.apache.org/licenses/LICENSE-2.0.html
 
@@ -709,7 +710,8 @@ extends:
 
   # Insert in body
   # 插入到 body
-  body: []
+  body:
+    - <script src="/js/home-product-layout.js"></script>
 # --------------------------- end ---------------------------
 
 # --------------------------- start ---------------------------
