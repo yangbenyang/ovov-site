@@ -21,10 +21,10 @@ nav:
   # Menu
   # 菜单
   menu:
-    首页: /
+    技能中心: /plugins/
+    案例库: /categories/网页设计/
     新手入门: /categories/入门教程/
-    插件下载: /plugins/
-    案例教程: /categories/网页设计/
+    文档: /archives/
 
   # Right button
   # 右侧按钮
@@ -485,8 +485,8 @@ footer:
       全部标签: /tags/
     教程:
       新手入门: /categories/入门教程/
-      插件下载: /plugins/
-      案例教程: /categories/网页设计/
+      技能中心: /plugins/
+      案例库: /categories/网页设计/
     协议:
       Apache-2.0: https://www.apache.org/licenses/LICENSE-2.0.html
 
@@ -712,6 +712,7 @@ extends:
   # 插入到 body
   body:
     - <script src="/js/home-product-layout.js"></script>
+    - <script src="/js/openclaw-capability-center.js"></script>
 # --------------------------- end ---------------------------
 
 # --------------------------- start ---------------------------

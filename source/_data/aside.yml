@@ -19,8 +19,8 @@
   content_html: |
     <div class="learning-path-list">
       <a href="/categories/入门教程/"><span>01</span><strong>配置模型</strong><em>API Key、模型地址与模型 ID</em></a>
-      <a href="/plugins/"><span>02</span><strong>下载插件</strong><em>获取设计、办公、社媒插件包</em></a>
-      <a href="/plugins/#install"><span>03</span><strong>安装插件</strong><em>复制指令，让 OpenClaw 自动安装</em></a>
+      <a href="/plugins/"><span>02</span><strong>安装能力</strong><em>搜索目标，一句话给 OpenClaw 装技能</em></a>
+      <a href="/plugins/#all-skills"><span>03</span><strong>筛选技能</strong><em>按场景、角色、产物快速定位</em></a>
       <a href="/categories/网页设计/"><span>04</span><strong>跟做案例</strong><em>网页、PPT、文档、动效实战</em></a>
       <a href="/#wechat-contact"><span>05</span><strong>微信支持</strong><em>不会配置时备注 OpenClaw</em></a>
     </div>
@@ -29,9 +29,9 @@
   id: card-widget-plugin-quick
   class: plugin-quick-card
   icon: fas fa-download
-  title: 插件下载
+  title: 技能中心
   content_html: |
     <div class="plugin-quick">
-      <p>把常用 OpenClaw 插件集中到一个入口，下载、安装、案例一起看。</p>
-      <a href="/plugins/">进入插件中心</a>
+      <p>按目标找到 OpenClaw 技能，一句话安装网页、PPT、PRD、海报和 Excel 能力。</p>
+      <a href="/plugins/">进入技能中心</a>
     </div>
